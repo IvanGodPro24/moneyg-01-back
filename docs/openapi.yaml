@@ -1,0 +1,26 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Money Guard app
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description:
+    This is a documentation of Money Guard app
+tags:
+  - name: Transactions
+    description: Operations about transactions.
+  - name: Auth
+    description: Auth operations.
+servers:
+  - url: http://localhost:3000
+  - url: https://moneyg-01-back.onrender.com
+# paths:
+#     /transactions:
+#       get:
+#         $ref: ../swagger/paths/transactions/get.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
