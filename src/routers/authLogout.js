@@ -1,8 +1,8 @@
 import express from 'express';
 
-import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
+import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
-import { logoutController } from '../../controller/auth/controllersLogout.js';
+import { logoutController } from '../controllers/authLogoutController.js';
 
 const router = express.Router();
 

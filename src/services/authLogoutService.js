@@ -1,4 +1,4 @@
-import Session from '../../db/model/Session.js';
+import Session from '../db/model/Session.js';
 
 export const logoutUser = async (accessToken) => {
   if (!accessToken) {

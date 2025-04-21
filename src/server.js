@@ -4,9 +4,9 @@ import cookieParser from 'cookie-parser';
 import { getEnvVar } from './utils/getEnvVar.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
-import authRegister from './routers/auth/authRegister.js';
-import authLogin from './routers/auth/authLogin.js';
-import authLogout from './routers/auth/authLogout.js';
+import authRegister from './routers/authRegister.js';
+import authLogin from './routers/authLogin.js';
+import authLogout from './routers/authLogout.js';
 // import swaggerUi from 'swagger-ui-express';
 // import swaggerDocument from './swagger.json';
 

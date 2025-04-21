@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
-import User from '../../db/model/Users.js';
-import Session from '../../db/model/Session.js';
+import User from '../db/model/Users.js';
+import Session from '../db/model/Session.js';
 import crypto from 'crypto';
 
 export const loginUser = async (userData) => {

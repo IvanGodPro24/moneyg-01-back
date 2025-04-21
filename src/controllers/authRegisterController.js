@@ -1,4 +1,4 @@
-import { registerUser } from '../../services/auth/serviceRegister.js';
+import { registerUser } from '../services/authRegisterService.js';
 
 export const registerController = async (req, res, next) => {
   try {

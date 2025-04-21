@@ -1,4 +1,4 @@
-import { logoutUser } from '../../services/auth/servicesLogout.js';
+import { logoutUser } from '../services/authLogoutService.js';
 
 export const logoutController = async (req, res, next) => {
   try {
