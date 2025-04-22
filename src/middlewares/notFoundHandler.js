@@ -1,3 +1,5 @@
-export function notFoundHandler(req, res, _next) {
-  res.status(404).json({ status: 404, message: 'Router not found' });
+import createHttpError from 'http-errors';
+
+export function notFoundHandler(req, res, next) {
+  next(createHttpError(404, 'Router not found'));
 }

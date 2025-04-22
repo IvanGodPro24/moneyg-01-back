@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const userSchema = new Schema(
   {
@@ -19,6 +19,10 @@ const userSchema = new Schema(
       minlength: 8,
       maxlength: 64,
     },
+    token: {
+      type: String,
+      default: '',
+    },
     balance: {
       type: Number,
       default: 0,
@@ -31,6 +35,6 @@ const userSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 export default User;
