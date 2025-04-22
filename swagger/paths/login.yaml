@@ -1,0 +1,34 @@
+/login:
+  post:
+    summary: Вхід користувача
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas.yaml#/schemas/UserLoginRequest'
+    responses:
+      '200':
+        description: Успішний вхід
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas.yaml#/schemas/UserResponse'
+      '400':
+        description: Помилка валідації вхідних даних
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas.yaml#/schemas/ValidationErrorResponse'
+      '401':
+        description: Невірні облікові дані
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas.yaml#/schemas/UnauthorizedErrorResponse'
+      '500':
+        description: Внутрішня помилка сервера
+        content:
+          application/json:
+            schema:
+              $ref: '../../components/schemas.yaml#/schemas/InternalServerErrorResponse'
