@@ -1,15 +1,21 @@
-import { registerUser } from '../services/authRegisterService.js';
+import createHttpError from 'http-errors';
+import {
+  createUser,
+  findUserByEmail,
+} from '../services/authRegisterService.js';
 
-export const registerController = async (req, res, next) => {
-  try {
-    const userData = req.body;
-    const newUser = await registerUser(userData);
-    res.status(201).json({
-      status: 201,
-      message: 'User registered successfully',
-      data: newUser,
-    });
-  } catch (error) {
-    next(error);
+export const registerUserController = async (req, res) => {
+  const user = await findUserByEmail(req.body.email);
+  if (user) {
+    throw new createHttpError(409, 'Email in use');
   }
+  const newUser = await createUser(req.body);
+
+  res.status(201).json({
+    user: {
+      name: newUser.user.name,
+      email: newUser.user.email,
+    },
+    token: newUser.token,
+  });
 };

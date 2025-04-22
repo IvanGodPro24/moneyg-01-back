@@ -1,19 +1,21 @@
-import { logoutUser } from '../services/authLogoutService.js';
+import {
+  findUserByEmail,
+  updateUserWithToken,
+} from '../services/authRegisterService.js';
 
-export const logoutController = async (req, res, next) => {
+export const logoutUserController = async (req, res, next) => {
+  const { email } = req.body;
+
   try {
-    const accessToken = req.cookies?.accessToken;
+    const user = await findUserByEmail(email);
 
-    await logoutUser(accessToken);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-    res.clearCookie('accessToken', {
-      httpOnly: true,
-    });
-    res.clearCookie('refreshToken', {
-      httpOnly: true,
-    });
+    await updateUserWithToken(user._id, null);
 
-    res.status(200).json({ status: 200, message: 'Logout successful' });
+    res.status(204).send();
   } catch (error) {
     next(error);
   }

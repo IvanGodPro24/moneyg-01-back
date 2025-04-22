@@ -1,35 +1,32 @@
 import bcrypt from 'bcrypt';
 import User from '../db/model/Users.js';
-import createHttpError from 'http-errors';
+import jwt from 'jsonwebtoken';
+import { getEnvVar } from '../utils/getEnvVar.js';
 
-export const registerUser = async (userData) => {
-  const { name, email, password } = userData;
+export const findUserByEmail = (email) => User.findOne({ email });
 
-  const existingUser = await User.findOne({ email });
-  if (existingUser) {
-    throw new createHttpError.Conflict(
-      `User with email '${email}' already exists`,
-    );
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const newUser = new User({
-    name,
-    email,
-    password: hashedPassword,
+export const updateUserWithToken = async (userId) => {
+  const token = jwt.sign({ id: userId }, getEnvVar('JWT_SECRET'), {
+    expiresIn: '1d',
   });
+  await User.updateOne({ _id: userId }, { token });
+  return token;
+};
 
+export const createUser = async (userData) => {
   try {
-    const savedUser = await newUser.save();
+    const { password } = userData;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    return {
-      id: savedUser._id,
-      name: savedUser.name,
-      email: savedUser.email,
-    };
+    const user = await User.create({
+      ...userData,
+      password: hashedPassword,
+    });
+    const token = await updateUserWithToken(user._id);
+
+    return { user: user.toObject(), token };
   } catch (error) {
-    console.error('Error saving user:', error);
-    throw new createHttpError.InternalServerError('Failed to create user');
+    console.error('Error created user!', error);
+    throw error;
   }
 };

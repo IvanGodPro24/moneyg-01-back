@@ -1,8 +1,5 @@
-import Session from '../db/model/Session.js';
+import User from '../db/model/Users.js';
 
-export const logoutUser = async (accessToken) => {
-  if (!accessToken) {
-    return;
-  }
-  await Session.deleteOne({ accessToken });
+export const logoutUser = async (userId) => {
+  await User.findByIdAndUpdate(userId, { token: '' }, { new: true });
 };

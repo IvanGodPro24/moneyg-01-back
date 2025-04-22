@@ -7,14 +7,13 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import authRegister from './routers/authRegister.js';
 import authLogin from './routers/authLogin.js';
 import authLogout from './routers/authLogout.js';
-// import swaggerUi from 'swagger-ui-express';
-// import swaggerDocument from './swagger.json';
 
 export const setupServer = () => {
   const app = express();
 
   app.use(cors());
   app.use(cookieParser());
+  app.use(express.json());
 
   const PORT = Number(getEnvVar('PORT', 3000));
 
