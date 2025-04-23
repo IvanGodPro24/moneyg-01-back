@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import { findUserById } from '../services/authRegisterService.js';
+import { findUserById } from '../services/userCurrentService.js';
 import jwt from 'jsonwebtoken';
 import { getEnvVar } from '../utils/getEnvVar.js';
 

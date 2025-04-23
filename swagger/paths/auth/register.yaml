@@ -1,0 +1,49 @@
+tags:
+  - Auth
+security: []
+summary: Register a new user
+operationId: registerUser
+description: 'Register a user with credentials'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            type: string
+            example: 'John Doe'
+          email:
+            type: string
+            format: email
+            maxLength: 64
+            example: 'john.doe@example.com'
+          password:
+            type: string
+            minLength: 8
+            maxLength: 64
+            example: 'securePassword123'
+responses:
+  '201':
+    description: Successfull register a user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - user
+          properties:
+            user:
+              type: object
+              $ref: '../../components/schemas/user.yaml'
+  '400':
+    $ref: ../../components/responses/400.yaml
+  '409':
+    $ref: ../../components/responses/409.yaml
+  '500':
+    $ref: ../../components/responses/500.yaml
