@@ -1,8 +1,6 @@
 import bcrypt from 'bcrypt';
 import User from '../db/model/Users.js';
 
-export const findUserById = (userId) => User.findById(userId);
-
 export const findUserByEmail = (email) => User.findOne({ email });
 
 export const createUser = async (userData) => {

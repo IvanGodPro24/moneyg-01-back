@@ -1,6 +1,3 @@
-import User from '../db/model/Users.js';
+import User from "../db/model/Users.js";
 
-export const getUser = async (userId) => {
-  const user = await User.findById(userId).select('-password');
-  return user;
-};
+export const findUserById = (userId) => User.findById(userId);
