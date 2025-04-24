@@ -23,10 +23,6 @@ export async function getTransactionController(req, res) {
     throw new createHttpError.NotFound('Transaction not found');
   }
 
-  if (transaction.userEmail.toString() !== req.user.email.toString()) {
-    throw new createHttpError.Forbidden('Transaction is not allowed');
-  }
-
   res.json({
     status: 200,
     message: 'Successfully found transaction!',
