@@ -1,3 +1,4 @@
+// src\middlewares\checkToken.js
 import createHttpError from 'http-errors';
 import { findUserById } from '../services/userCurrentService.js';
 import jwt from 'jsonwebtoken';

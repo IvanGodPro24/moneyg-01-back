@@ -1,3 +1,4 @@
+// src\controllers\authRegisterController.js
 import createHttpError from 'http-errors';
 import {
   createUser,
