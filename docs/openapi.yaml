@@ -5,8 +5,7 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  description:
-    This is a documentation of Money Guard app
+  description: This is a documentation of Money Guard app
 tags:
   - name: Transactions
     description: Operations about transactions.
