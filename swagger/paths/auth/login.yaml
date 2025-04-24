@@ -1,0 +1,56 @@
+tags:
+  - Auth
+security: []
+summary: Login a new user
+operationId: loginUser
+description: 'Login a user with credentials'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            type: string
+            format: email
+            maxLength: 64
+            example: 'john.doe@example.com'
+          password:
+            type: string
+            minLength: 8
+            maxLength: 64
+            example: 'securePassword123'
+responses:
+  '200':
+    description: Successfull login a user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - user
+            - token
+          properties:
+            user:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: 'John Doe'
+                email:
+                  type: string
+                  format: email
+                  example: 'john.doe@example.com'
+            token:
+              type: string
+              example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDdkZDA3NDE3NmIyNmI2NzhmNDcxYSIsImlhdCI6MTc0NTM5OTk5OSwiZXhwIjoxNzQ1NDg2Mzk5fQ.SO0oSy_qAwmBBYuNciENTjefeojFS5fbmF-tishRyxQ'
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'

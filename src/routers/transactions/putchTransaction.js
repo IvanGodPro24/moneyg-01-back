@@ -1,15 +1,17 @@
 import express from 'express';
-import { updateTransaction } from '../../validation/updateTransactionSchema';
-import { validateBody } from '../../middlewares/validateBody';
-import { ctrlWrapper } from '../../utils/ctrlWrapper';
-import { isValidID } from '../../middlewares/isValidId';
-import { patchTransaction } from '../../controllers/patchTransactionController';
+import { updateTransaction } from '../../validation/updateTransactionSchema.js';
+import { validateBody } from '../../middlewares/validateBody.js';
+import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
+import { isValidId } from '../../middlewares/isValidId.js';
+import { patchTransaction } from '../../controllers/transactions/patchTransactionController.js';
 
 const router = express.Router();
 
 router.patch(
   '/:trasactionId',
-  isValidID,
+  isValidId,
   validateBody(updateTransaction),
   ctrlWrapper(patchTransaction),
 );
+
+export default router;

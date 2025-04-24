@@ -1,5 +1,10 @@
 import express from 'express';
+import cors from 'cors';
 import { getEnvVar } from './utils/getEnvVar.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
+import router from './routers/index.js';
 
 export const setupServer = () => {
   const app = express();

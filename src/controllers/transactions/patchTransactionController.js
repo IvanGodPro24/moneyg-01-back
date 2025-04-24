@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import { updateContact } from '../services/putchTransaction.js';
+import { updateContact } from '../../services/transactions/putchTransaction.js';
 
 export const patchTransaction = async (req, res, next) => {
   const { transactionId } = req.params;
