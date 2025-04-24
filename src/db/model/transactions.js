@@ -1,12 +1,17 @@
-import { model, Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-const transactionsSchema = new Schema(
+const transactionSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
       required: true,
     },
-    type: { type: String, enum: ['income', 'expense'], required: true },
+    type: {
+      type: String,
+      enum: ['income', 'expense'],
+      default: 'expense',
+      required: true,
+    },
     category: {
       type: String,
       enum: [
@@ -25,9 +30,23 @@ const transactionsSchema = new Schema(
         return this.type === 'expense';
       },
     },
-    date: { type: Date, required: true },
-    sum: { type: String, required: true },
-    comment: { type: String },
+    date: {
+      type: Date,
+      required: true,
+      default: Date.now,
+    },
+    sum: {
+      type: Number,
+      required: true,
+    },
+    comment: {
+      type: String,
+      default: '',
+    },
+    userEmail: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -35,5 +54,6 @@ const transactionsSchema = new Schema(
   },
 );
 
-const Transaction = model('Transaction', transactionsSchema);
+const Transaction = model('Transaction', transactionSchema);
+
 export default Transaction;
