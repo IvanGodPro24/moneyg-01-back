@@ -1,11 +1,12 @@
 import createHttpError from 'http-errors';
 
-import { deleteTransaction } from '../../services/transactions/delete.js';
+import { deleteTransaction } from '../../services/transactions/deleteTransaction.js';
 
-export const deletCTransactionController = async (req, res, next) => {
-  const { id } = req.params;
+export const deleteTransactionController = async (req, res) => {
+  const { transactionId } = req.params;
+
   const result = await deleteTransaction({
-    _id: id,
+    _id: transactionId,
     userId: req.user._id,
   });
 

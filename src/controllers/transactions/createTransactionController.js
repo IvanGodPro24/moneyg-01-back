@@ -1,4 +1,4 @@
-import { createTransaction } from '../../services/transactions/add.js';
+import { createTransaction } from '../../services/transactions/createTransaction.js';
 
 export const createTransactionController = async (req, res) => {
   const result = await createTransaction({

@@ -33,7 +33,6 @@ const transactionSchema = new Schema(
     date: {
       type: Date,
       required: true,
-      default: Date.now,
     },
     sum: {
       type: Number,
@@ -43,13 +42,8 @@ const transactionSchema = new Schema(
       type: String,
       default: '',
     },
-    userEmail: {
-      type: String,
-      required: true,
-    },
   },
   {
-    timestamps: true,
     versionKey: false,
   },
 );

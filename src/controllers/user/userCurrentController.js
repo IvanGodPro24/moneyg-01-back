@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import { findUserById } from '../services/userCurrentService.js';
+import { findUserById } from '../../services/user/userCurrentService.js';
 
 export const getUserController = async (req, res) => {
   const user = await findUserById(req.user._id);

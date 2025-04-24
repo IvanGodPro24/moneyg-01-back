@@ -2,10 +2,10 @@ import createHttpError from 'http-errors';
 import {
   getTransaction,
   getTransactions,
-} from '../services/getTransactions.js';
+} from '../../services/transactions/getTransactions.js';
 
 export async function getTransactionsController(req, res) {
-  const response = await getTransactions(req.user.email);
+  const response = await getTransactions(req.user._id);
 
   res.json({
     status: 200,
@@ -17,7 +17,7 @@ export async function getTransactionsController(req, res) {
 export async function getTransactionController(req, res) {
   const { transactionId } = req.params;
 
-  const transaction = await getTransaction(transactionId, req.user.email);
+  const transaction = await getTransaction(transactionId, req.user._id);
 
   if (transaction === null) {
     throw new createHttpError.NotFound('Transaction not found');

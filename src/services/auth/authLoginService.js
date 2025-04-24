@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import createHttpError from 'http-errors';
-import User from '../db/model/Users.js';
-import { getEnvVar } from '../utils/getEnvVar.js';
+import User from '../../db/model/Users.js';
+import { getEnvVar } from '../../utils/getEnvVar.js';
 
 export const updateUserWithToken = async (userId) => {
   const token = jwt.sign({ id: userId }, getEnvVar('JWT_SECRET'), {

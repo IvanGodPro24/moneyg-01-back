@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { createTransactionShema } from '../../validation/addTransaction.js';
-import { createTransactionController } from '../../controllers/transactions/add.js';
+import { createTransactionSchema } from '../../validation/addTransaction.js';
+import { createTransactionController } from '../../controllers/transactions/createTransactionController.js';
 import { validateBody } from '../../middlewares/validateBody.js';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
 
@@ -11,7 +11,7 @@ const jsonParser = express.json();
 router.post(
   '/',
   jsonParser,
-  validateBody(createTransactionShema),
+  validateBody(createTransactionSchema),
   ctrlWrapper(createTransactionController),
 );
 
