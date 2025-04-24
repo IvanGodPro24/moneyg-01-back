@@ -1,4 +1,4 @@
-import { loginUser } from '../services/authLoginService.js';
+import { loginUser } from '../../services/auth/authLoginService.js';
 
 export const loginUserController = async (req, res) => {
   const { user, token } = await loginUser(req.body);

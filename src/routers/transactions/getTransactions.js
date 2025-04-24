@@ -1,16 +1,16 @@
 import express from 'express';
 
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
-import { isValidID } from '../../middlewares/isValidId.js';
+import { isValidId } from '../../middlewares/isValidId.js';
 import {
   getTransactionController,
   getTransactionsController,
-} from '../../controllers/getTransactionsController.js';
+} from '../../controllers/transactions/getTransactionsController.js';
 
 const router = express.Router();
 
 router.get('/', ctrlWrapper(getTransactionsController));
 
-router.get('/:transactionId', isValidID, ctrlWrapper(getTransactionController));
+router.get('/:transactionId', isValidId, ctrlWrapper(getTransactionController));
 
 export default router;
