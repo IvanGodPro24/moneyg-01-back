@@ -5,6 +5,7 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: true,
+      maxlength: 64,
     },
     email: {
       type: String,
@@ -32,7 +33,10 @@ const userSchema = new Schema(
       default: null,
     },
   },
-  { versionKey: false, timestamps: true },
+  {
+    versionKey: false,
+    timestamps: true,
+  },
 );
 
 const User = model('User', userSchema);

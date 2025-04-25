@@ -21,34 +21,34 @@ requestBody:
             description: Transaction type
             enum: [income, expense]
             example: expense
-        category:
-          type: string
-          description: Transaction category
-          enum:
-            - Main expenses
-            - Products
-            - Car
-            - Self care
-            - Child care
-            - Household products
-            - Education
-            - Leisure
-            - Other expenses
-            - Entertainment
-          example: Products
-        date:
-          type: string
-          format: date
-          description: Transaction date
-          example: 2025-04-23
-        sum:
-          type: number
-          description: Transaction amount
-          example: 350
-        comment:
-          type: string
-          description: Optional comment
-          example: Grocery shopping
+          category:
+            type: string
+            description: Transaction category
+            enum:
+              - Main expenses
+              - Products
+              - Car
+              - Self care
+              - Child care
+              - Household products
+              - Education
+              - Leisure
+              - Other expenses
+              - Entertainment
+            example: Products
+          date:
+            type: string
+            format: date
+            description: Transaction date
+            example: 2025-04-23
+          sum:
+            type: number
+            description: Transaction amount
+            example: 350
+          comment:
+            type: string
+            description: Optional comment
+            example: Grocery shopping
 responses:
   '201':
     description: Successfully created a transaction
@@ -65,9 +65,8 @@ responses:
               example: Successfully created a transaction!
             data:
               type: object
-              properties:
-                $ref: '../../components/schemas/addTransactions.yaml'
+              $ref: '../../components/schemas/transaction.yaml'
   '401':
     $ref: ../../components/responses/401.yaml
-  404':
+  '404':
     $ref: ../../components/responses/404.yaml
