@@ -1,7 +1,7 @@
 tags:
   - User
 security:
-  - BearerAuth: []
+  - bearerAuth: []
 summary: Update user information
 operationId: updateUser
 description: Update specific fields of the current user. Requires authorization token.
@@ -71,11 +71,7 @@ responses:
                   format: date-time
                   example: 2025-04-24T00:49:10.031Z
   '400':
-    description: Invalid request body
-    content:
-      application/json:
-        schema:
-          $ref: ../../components/responses/400.yaml
+    $ref: ../../components/responses/400.yaml
   '401':
     $ref: ../../components/responses/401.yaml
   '500':
