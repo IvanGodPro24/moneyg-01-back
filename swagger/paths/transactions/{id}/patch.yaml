@@ -1,0 +1,61 @@
+tags:
+  - Transactions
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Унікальний ідентифікатор транзакції
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: [income, expense]
+            example: income
+          category:
+            type: string
+            example: Products
+          date:
+            type: string
+            example: 2024-04-25
+          sum:
+            type: number
+            example: 150
+          comment:
+            type: string
+            example: Покупка в магазині
+        required:
+          - type
+          - category
+          - date
+          - sum
+          - comment
+responses:
+  '200':
+    description: Транзакцію успішно оновлено
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: success
+            data:
+              $ref: '../../../components/schemas/transaction.yaml'
+  '400':
+    description: Помилка валідації даних
+  '401':
+    description: Неавторизований доступ
+  '404':
+    description: Транзакцію не знайдено
+  '500':
+    description: Внутрішня помилка сервера
