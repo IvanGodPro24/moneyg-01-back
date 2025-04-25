@@ -3,7 +3,7 @@ import createHttpError from 'http-errors';
 import {
   createUser,
   findUserByEmail,
-} from '../services/authRegisterService.js';
+} from '../../services/auth/authRegisterService.js';
 
 export const registerUserController = async (req, res) => {
   const email = await findUserByEmail(req.body.email);

@@ -11,9 +11,11 @@ tags:
     description: Operations about transactions.
   - name: Auth
     description: Auth operations.
+  - name: User
+    description: User operations.
 servers:
-  - url: http://localhost:3000
   - url: https://moneyg-01-back.onrender.com
+  - url: http://localhost:3000
 paths:
   /auth/register:
     post:
@@ -30,9 +32,16 @@ paths:
   /user/update:
     patch:
       $ref: '../swagger/paths/user/update.yaml'
-#  /transactions:
-#    get:
-#      $ref: ../swagger/paths/transactions/get.yaml
+  /transactions:
+    get:
+      $ref: ../swagger/paths/transactions/get.yaml
+    post:
+      $ref: ../swagger/paths/transactions/post.yaml
+  /transactions/{id}:
+    get:
+      $ref: '../swagger/paths/transactions/{id}/get.yaml'
+    delete:
+      $ref: '../swagger/paths/transactions/{id}/delete.yaml'
 components:
   securitySchemes:
     bearerAuth:

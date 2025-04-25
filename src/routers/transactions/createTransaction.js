@@ -1,19 +1,18 @@
 import express from 'express';
 
+import { createTransactionSchema } from '../../validation/addTransaction.js';
+import { createTransactionController } from '../../controllers/transactions/createTransactionController.js';
 import { validateBody } from '../../middlewares/validateBody.js';
-import { userLoginSchema } from '../../validation/user.js';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
-import { loginUserController } from '../../controllers/auth/authLoginController.js';
 
 const router = express.Router();
-
 const jsonParser = express.json();
 
 router.post(
-  '/login',
+  '/',
   jsonParser,
-  validateBody(userLoginSchema),
-  ctrlWrapper(loginUserController),
+  validateBody(createTransactionSchema),
+  ctrlWrapper(createTransactionController),
 );
 
 export default router;

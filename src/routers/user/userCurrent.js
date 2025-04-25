@@ -1,7 +1,7 @@
 // src\routers\user\userCurrent.js
 import { Router } from 'express';
 
-import { getUserController } from '../../controllers/userCurrentController.js';
+import { getUserController } from '../../controllers/user/userCurrentController.js';
 import { checkToken } from '../../middlewares/checkToken.js';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
 

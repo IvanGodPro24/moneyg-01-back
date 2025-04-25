@@ -1,0 +1,45 @@
+type: object
+required:
+  - userId
+  - type
+  - category
+  - date
+  - sum
+properties:
+  userId:
+    type: string
+    description: ID of the user who owns the transaction
+    example: 660ab7235d4d0c001c776ff9
+  type:
+    type: string
+    enum: [income, expense]
+    description: Type of transaction
+    example: expense
+  category:
+    type: string
+    description: Transaction category
+    enum:
+      - Main expenses
+      - Products
+      - Car
+      - Self care
+      - Child care
+      - Household products
+      - Education
+      - Leisure
+      - Other expenses
+      - Entertainment
+    example: Products
+  date:
+    type: string
+    format: date
+    description: Transaction date (ISO 8601 format)
+    example: 2025-04-23
+  sum:
+    type: string
+    description: Amount of the transaction stored as string
+    example: '350'
+  comment:
+    type: string
+    description: Optional comment about the transaction
+    example: Grocery shopping
