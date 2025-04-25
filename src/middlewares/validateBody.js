@@ -1,4 +1,3 @@
-// src\middlewares\validateBody.js
 import createHttpError from 'http-errors';
 
 export function validateBody(schema) {

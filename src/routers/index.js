@@ -8,8 +8,7 @@ import createTransaction from './transactions/createTransaction.js';
 import deleteTransaction from './transactions/deleteTransaction.js';
 import { checkToken } from '../middlewares/checkToken.js';
 import userCurrent from './user/userCurrent.js';
-import userUpdateRouter from './user/userUpdate.js';
-import userCurrentRouter from './user/userCurrent.js';
+import userUpdate from './user/userUpdate.js';
 
 const router = Router();
 
@@ -21,9 +20,7 @@ router.use('/transactions', checkToken, getTransactions);
 router.use('/transactions', checkToken, createTransaction);
 router.use('/transactions', checkToken, deleteTransaction);
 
-router.use('/user', userCurrent);
-
-router.use('/user', userUpdateRouter);
-router.use('/user', userCurrentRouter);
+router.use('/user', checkToken, userCurrent);
+router.use('/user', checkToken, userUpdate);
 
 export default router;

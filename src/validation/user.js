@@ -1,4 +1,3 @@
-//src\validation\user.js
 import Joi from 'joi';
 
 export const userRegisterSchema = Joi.object({
