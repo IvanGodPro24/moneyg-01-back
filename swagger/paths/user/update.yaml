@@ -1,0 +1,78 @@
+tags:
+  - User
+security:
+  - bearerAuth: []
+summary: Update user information
+operationId: updateUser
+description: Update specific fields of the current user. Requires authorization token.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+            description: User's name
+            example: John Updated
+          email:
+            type: string
+            format: email
+            maxLength: 64
+            description: Valid email address
+            example: johndoe@example.com
+          balance:
+            type: number
+            description: User's balance
+            example: 2000
+          avatarURL:
+            type: string
+            format: uri
+            description: URL to user's avatar
+            example: https://example.com/avatar.jpg
+        additionalProperties: false
+        minProperties: 1
+responses:
+  '200':
+    description: Successfully updated user information
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: success
+            data:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 680988f25a8c6303e5fbb380
+                name:
+                  type: string
+                  example: John Updated
+                email:
+                  type: string
+                  example: johndoe@example.com
+                balance:
+                  type: number
+                  example: 2000
+                avatarURL:
+                  type: string
+                  example: https://example.com/avatar.jpg
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: 2025-04-23T00:42:26.060Z
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: 2025-04-24T00:49:10.031Z
+  '400':
+    $ref: ../../components/responses/400.yaml
+  '401':
+    $ref: ../../components/responses/401.yaml
+  '500':
+    $ref: ../../components/responses/500.yaml

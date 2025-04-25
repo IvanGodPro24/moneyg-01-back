@@ -1,6 +1,7 @@
 tags:
   - User
-security: []
+security:
+  - bearerAuth: []
 summary: Get information about user
 operationId: currentUser
 description: 'Get an information about current user'

@@ -29,6 +29,9 @@ paths:
   /user/current:
     get:
       $ref: '../swagger/paths/user/current.yaml'
+  /user/update:
+    patch:
+      $ref: '../swagger/paths/user/update.yaml'
   /transactions:
     get:
       $ref: ../swagger/paths/transactions/get.yaml
