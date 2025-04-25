@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getEnvVar } from '../utils/getEnvVar.js';
+import { getEnvVar } from '../utils/getEnvVar';
 
 const user = getEnvVar('MONGODB_USER');
 const pwd = getEnvVar('MONGODB_PASSWORD');

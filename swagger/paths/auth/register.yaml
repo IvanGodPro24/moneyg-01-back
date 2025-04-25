@@ -18,6 +18,7 @@ requestBody:
           name:
             type: string
             example: 'John Doe'
+            maxLength: 64
           email:
             type: string
             format: email

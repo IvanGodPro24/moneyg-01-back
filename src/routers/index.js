@@ -9,6 +9,7 @@ import deleteTransaction from './transactions/deleteTransaction.js';
 import putchTransactions from './transactions/putchTransaction.js';
 import { checkToken } from '../middlewares/checkToken.js';
 import userCurrent from './user/userCurrent.js';
+import userUpdate from './user/userUpdate.js';
 
 const router = Router();
 
@@ -20,8 +21,13 @@ router.use('/transactions', checkToken, getTransactions);
 router.use('/transactions', checkToken, createTransaction);
 router.use('/transactions', checkToken, deleteTransaction);
 
+<<<<<<< HEAD
 router.use('/transactions', checkToken, putchTransactions);
 
 router.use('/user', userCurrent);
+=======
+router.use('/user', checkToken, userCurrent);
+router.use('/user', checkToken, userUpdate);
+>>>>>>> e0589e0432e901a5e677f418b6b2c32baa2c3247
 
 export default router;
