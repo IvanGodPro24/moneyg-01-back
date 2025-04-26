@@ -1,16 +1,18 @@
-import { Router } from 'express';
-import { updateTransaction } from '../../validation/updateTransactionSchema.js';
+import { Router, json } from 'express';
+import { updateTransactionSchema } from '../../validation/updateTransactionSchema.js';
 import { validateBody } from '../../middlewares/validateBody.js';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
 import { isValidId } from '../../middlewares/isValidId.js';
 import { patchTransactionController } from '../../controllers/transactions/patchTransactionController.js';
 
 const router = Router();
+const jsonParser = json();
 
 router.patch(
-  '/:trasactionId',
+  '/:transactionId',
   isValidId,
-  validateBody(updateTransaction),
+  jsonParser,
+  validateBody(updateTransactionSchema),
   ctrlWrapper(patchTransactionController),
 );
 

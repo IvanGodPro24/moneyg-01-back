@@ -22,7 +22,6 @@ router.use('/transactions', checkToken, createTransaction);
 router.use('/transactions', checkToken, deleteTransaction);
 router.use('/transactions', checkToken, patchTransactions);
 
-router.use('/user', userCurrent);
 router.use('/user', checkToken, userCurrent);
 router.use('/user', checkToken, userUpdate);
 
