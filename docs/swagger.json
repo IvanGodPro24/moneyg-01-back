@@ -597,6 +597,95 @@
             "$ref": "#/components/responses/404"
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Update transaction by ID",
+        "operationId": "updateTransaction",
+        "description": "Update a transaction by its ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique transaction id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "income",
+                      "expense"
+                    ],
+                    "example": "income"
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "Products"
+                  },
+                  "date": {
+                    "type": "string",
+                    "example": "2024-04-25"
+                  },
+                  "sum": {
+                    "type": "number",
+                    "example": 150
+                  },
+                  "comment": {
+                    "type": "string",
+                    "example": "Purchase in a store"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction successfully updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/transaction"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
       }
     }
   },
