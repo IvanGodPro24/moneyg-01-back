@@ -1,15 +1,13 @@
-//src\controllers\authUserUpdate.js
-
 import createHttpError from 'http-errors';
 import User from '../db/model/Users.js';
 
 export const updateUserController = async (req, res) => {
-  const { id } = req.user; // Ідентифікатор користувача з токена.
+  const { id } = req.user;
   const updates = req.body;
 
   const updatedUser = await User.findByIdAndUpdate(id, updates, {
-    new: true, // Повернути оновлений документ.
-    runValidators: true, // Виконати перевірку на рівні схеми.
+    new: true,
+    runValidators: true,
   });
 
   if (!updatedUser) {

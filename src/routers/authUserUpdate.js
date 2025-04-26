@@ -1,5 +1,3 @@
-//src\routers\authUserUpdate.js
-
 import express from 'express';
 import { updateUser } from '../controllers/userController.js';
 import { authenticate } from '../middlewares/authMiddleware.js';

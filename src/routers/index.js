@@ -10,6 +10,7 @@ import { checkToken } from '../middlewares/checkToken.js';
 import userCurrent from './user/userCurrent.js';
 import userUpdateRouter from './user/userUpdate.js';
 import userCurrentRouter from './user/userCurrent.js';
+import categoriesRouter from './categories.js';
 
 const router = Router();
 
@@ -22,6 +23,8 @@ router.use('/transactions', checkToken, createTransaction);
 router.use('/transactions', checkToken, deleteTransaction);
 
 router.use('/user', userCurrent);
+
+router.use('/categories', categoriesRouter);
 
 router.use('/user', userUpdateRouter);
 router.use('/user', userCurrentRouter);

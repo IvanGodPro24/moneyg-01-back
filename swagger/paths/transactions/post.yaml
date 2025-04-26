@@ -1,3 +1,76 @@
+# tags:
+#   - Transactions
+# summary: Create a new transaction
+# description: Creates a new income or expense transaction for the authenticated user.
+# operationId: createTransaction
+# security:
+#   - bearerAuth: []
+# requestBody:
+#   content:
+#     application/json:
+#       schema:
+#         type: object
+#         required:
+#           - type
+#           - category
+#           - date
+#           - sum
+#         properties:
+#           type:
+#             type: string
+#             description: Transaction type
+#             enum: [income, expense]
+#             example: expense
+#           category:
+#             type: string
+#             description: Transaction category
+#             enum:
+#               - Main expenses
+#               - Products
+#               - Car
+#               - Self care
+#               - Child care
+#               - Household products
+#               - Education
+#               - Leisure
+#               - Other expenses
+#               - Entertainment
+#             example: Products
+#           date:
+#             type: string
+#             format: date
+#             description: Transaction date
+#             example: 2025-04-23
+#           sum:
+#             type: number
+#             description: Transaction amount
+#             example: 350
+#           comment:
+#             type: string
+#             description: Optional comment
+#             example: Grocery shopping
+# responses:
+#   '201':
+#     description: Successfully created a transaction
+#     content:
+#       application/json:
+#         schema:
+#           type: object
+#           properties:
+#             status:
+#               type: integer
+#               example: 201
+#             message:
+#               type: string
+#               example: Successfully created a transaction!
+#             data:
+#               type: object
+#               $ref: '../../components/schemas/transaction.yaml'
+#   '401':
+#     $ref: ../../components/responses/401.yaml
+#   '404':
+#     $ref: ../../components/responses/404.yaml
+
 tags:
   - Transactions
 summary: Create a new transaction
@@ -19,22 +92,13 @@ requestBody:
           type:
             type: string
             description: Transaction type
-            enum: [income, expense]
+            enum:
+              - income
+              - expense
             example: expense
           category:
             type: string
-            description: Transaction category
-            enum:
-              - Main expenses
-              - Products
-              - Car
-              - Self care
-              - Child care
-              - Household products
-              - Education
-              - Leisure
-              - Other expenses
-              - Entertainment
+            description: Назва категорії транзакції
             example: Products
           date:
             type: string
@@ -67,6 +131,6 @@ responses:
               type: object
               $ref: '../../components/schemas/transaction.yaml'
   '401':
-    $ref: ../../components/responses/401.yaml
+    $ref: '../../components/responses/401.yaml'
   '404':
-    $ref: ../../components/responses/404.yaml
+    $ref: '../../components/responses/404.yaml'

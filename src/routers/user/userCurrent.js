@@ -1,4 +1,3 @@
-// src\routers\user\userCurrent.js
 import { Router } from 'express';
 
 import { getUserController } from '../../controllers/user/userCurrentController.js';

@@ -1,3 +1,4 @@
+
 import { Schema, model } from 'mongoose';
 
 const transactionSchema = new Schema(
@@ -5,6 +6,7 @@ const transactionSchema = new Schema(
     userId: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: 'User',
     },
     type: {
       type: String,
@@ -13,22 +15,9 @@ const transactionSchema = new Schema(
       required: true,
     },
     category: {
-      type: String,
-      enum: [
-        'Main expenses',
-        'Products',
-        'Car',
-        'Self care',
-        'Child care',
-        'Household products',
-        'Education',
-        'Leisure',
-        'Other expenses',
-        'Entertainment',
-      ],
-      required: function () {
-        return this.type === 'expense';
-      },
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'Category',
     },
     date: {
       type: Date,

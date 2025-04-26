@@ -1,4 +1,4 @@
-// src\utils\getEnvVar.js
+
 import dotenv from 'dotenv';
 
 dotenv.config();

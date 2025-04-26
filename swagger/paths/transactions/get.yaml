@@ -1,3 +1,32 @@
+# tags:
+#   - Transactions
+# summary: Get all transactions
+# description: Get all transactions in collection for the authenticated user.
+# operationId: getTransactions
+# security:
+#   - bearerAuth: []
+# responses:
+#   '200':
+#     description: Successfully found transactions
+#     content:
+#       application/json:
+#         schema:
+#           type: object
+#           properties:
+#             status:
+#               type: integer
+#               example: 200
+#             message:
+#               type: string
+#               example: Successfully found transactions!
+#             data:
+#               type: object
+#               $ref: '../../components/schemas/transaction.yaml'
+#   '401':
+#     $ref: ../../components/responses/401.yaml
+#   '404':
+#     $ref: ../../components/responses/404.yaml
+
 tags:
   - Transactions
 summary: Get all transactions
@@ -20,9 +49,10 @@ responses:
               type: string
               example: Successfully found transactions!
             data:
-              type: object
-              $ref: '../../components/schemas/transaction.yaml'
+              type: array
+              items:
+                $ref: '../../components/schemas/transaction.yaml'
   '401':
-    $ref: ../../components/responses/401.yaml
+    $ref: '../../components/responses/401.yaml'
   '404':
-    $ref: ../../components/responses/404.yaml
+    $ref: '../../components/responses/404.yaml'

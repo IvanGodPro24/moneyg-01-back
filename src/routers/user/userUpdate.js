@@ -1,4 +1,3 @@
-// src\routers\user\userUpdate.js
 import { Router } from 'express';
 import { updateUserController } from '../../controllers/authUserUpdate.js';
 import { validateBody } from '../../middlewares/validateBody.js';

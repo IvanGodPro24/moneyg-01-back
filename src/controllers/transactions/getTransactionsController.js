@@ -2,14 +2,14 @@ import createHttpError from 'http-errors';
 import {
   getTransaction,
   getTransactions,
+  getTransactionsByCategory,
 } from '../../services/transactions/getTransactions.js';
 
 export async function getTransactionsController(req, res) {
   const response = await getTransactions(req.user._id);
 
   res.json({
-    status: 200,
-    message: 'Successfully found transactions!',
+
     data: response,
   });
 }
@@ -24,8 +24,19 @@ export async function getTransactionController(req, res) {
   }
 
   res.json({
-    status: 200,
-    message: 'Successfully found transaction!',
+
     data: transaction,
+  });
+}
+
+export async function getTransactionsByCategoryController(req, res) {
+  const { categoryId } = req.params;
+  const userId = req.user._id;
+
+  const transactions = await getTransactionsByCategory(userId, categoryId);
+
+  res.json({
+   
+    data: transactions,
   });
 }
