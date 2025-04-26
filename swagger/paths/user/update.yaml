@@ -41,35 +41,18 @@ responses:
         schema:
           type: object
           properties:
-            status:
+            name:
               type: string
-              example: success
-            data:
-              type: object
-              properties:
-                _id:
-                  type: string
-                  example: 680988f25a8c6303e5fbb380
-                name:
-                  type: string
-                  example: John Updated
-                email:
-                  type: string
-                  example: johndoe@example.com
-                balance:
-                  type: number
-                  example: 2000
-                avatarURL:
-                  type: string
-                  example: https://example.com/avatar.jpg
-                createdAt:
-                  type: string
-                  format: date-time
-                  example: 2025-04-23T00:42:26.060Z
-                updatedAt:
-                  type: string
-                  format: date-time
-                  example: 2025-04-24T00:49:10.031Z
+              example: John Updated
+            email:
+              type: string
+              example: johndoe@example.com
+            balance:
+              type: number
+              example: 2000
+            avatarURL:
+              type: string
+              example: https://example.com/avatar.jpg
   '400':
     $ref: ../../components/responses/400.yaml
   '401':

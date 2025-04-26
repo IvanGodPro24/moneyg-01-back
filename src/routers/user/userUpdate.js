@@ -1,15 +1,15 @@
-import { Router } from 'express';
-import { updateUserController } from '../../controllers/authUserUpdate.js';
+import { Router, json } from 'express';
+import { updateUserController } from '../../controllers/user/userUpdateController.js';
 import { validateBody } from '../../middlewares/validateBody.js';
-import { checkToken } from '../../middlewares/checkToken.js';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
 import { updateUserSchema } from '../../validation/user.js';
 
 const router = Router();
+const jsonParser = json();
 
 router.patch(
   '/update',
-  checkToken,
+  jsonParser,
   validateBody(updateUserSchema),
   ctrlWrapper(updateUserController),
 );

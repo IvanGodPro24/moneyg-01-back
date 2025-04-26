@@ -1,4 +1,4 @@
-import express from 'express';
+import { Router } from 'express';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
 import { isValidId } from '../../middlewares/isValidId.js';
 import {
@@ -7,7 +7,7 @@ import {
   getTransactionsByCategoryController,
 } from '../../controllers/transactions/getTransactionsController.js';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/', ctrlWrapper(getTransactionsController));
 router.get('/:transactionId', isValidId, ctrlWrapper(getTransactionController));

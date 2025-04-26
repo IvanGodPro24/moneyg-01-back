@@ -1,10 +1,10 @@
-import express from 'express';
+import { Router } from 'express';
 
 import { isValidId } from '../../middlewares/isValidId.js';
 import { ctrlWrapper } from '../../utils/ctrlWrapper.js';
 import { deleteTransactionController } from '../../controllers/transactions/deleteTransactionController.js';
 
-const router = express.Router();
+const router = Router();
 
 router.delete(
   '/:transactionId',
