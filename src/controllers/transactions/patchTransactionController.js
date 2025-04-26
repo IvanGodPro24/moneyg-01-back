@@ -1,18 +1,11 @@
 import createHttpError from 'http-errors';
 import { updateContact } from '../../services/transactions/patchTransaction.js';
 
-export const patchTransactionController = async (req, res, next) => {
+export const patchTransactionController = async (req, res) => {
   const { transactionId } = req.params;
   const result = await updateContact(transactionId, req.body);
 
-  if (!result) {
-    next(createHttpError(404, 'Transaction not found'));
-    return;
-  }
+  if (!result) throw createHttpError(404, 'Transaction not found');
 
-  res.json({
-    status: 200,
-    message: `Successfully patched a transaction!`,
-    data: result.student,
-  });
+  res.json(result);
 };

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export const updateTransaction = Joi.object({
+export const updateTransactionSchema = Joi.object({
   type: Joi.string().valid('income', 'expense'),
   category: Joi.string().valid(
     'Main expenses',
