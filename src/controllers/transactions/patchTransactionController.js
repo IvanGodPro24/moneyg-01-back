@@ -1,7 +1,7 @@
 import createHttpError from 'http-errors';
-import { updateContact } from '../../services/transactions/putchTransaction.js';
+import { updateContact } from '../../services/transactions/patchTransaction.js';
 
-export const patchTransaction = async (req, res, next) => {
+export const patchTransactionController = async (req, res, next) => {
   const { transactionId } = req.params;
   const result = await updateContact(transactionId, req.body);
 

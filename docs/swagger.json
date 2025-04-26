@@ -602,6 +602,9 @@
         "tags": [
           "Transactions"
         ],
+        "summary": "Update transaction by ID",
+        "operationId": "updateTransaction",
+        "description": "Update a transaction by its ID",
         "security": [
           {
             "bearerAuth": []
@@ -615,7 +618,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Унікальний ідентифікатор транзакції"
+            "description": "Unique transaction id"
           }
         ],
         "requestBody": {
@@ -647,32 +650,21 @@
                   },
                   "comment": {
                     "type": "string",
-                    "example": "Покупка в магазині"
+                    "example": "Purchase in a store"
                   }
-                },
-                "required": [
-                  "type",
-                  "category",
-                  "date",
-                  "sum",
-                  "comment"
-                ]
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Транзакцію успішно оновлено",
+            "description": "Transaction successfully updated",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "success"
-                    },
                     "data": {
                       "$ref": "#/components/schemas/transaction"
                     }
@@ -682,16 +674,16 @@
             }
           },
           "400": {
-            "description": "Помилка валідації даних"
+            "$ref": "#/components/responses/400"
           },
           "401": {
-            "description": "Неавторизований доступ"
+            "$ref": "#/components/responses/401"
           },
           "404": {
-            "description": "Транзакцію не знайдено"
+            "$ref": "#/components/responses/404"
           },
           "500": {
-            "description": "Внутрішня помилка сервера"
+            "$ref": "#/components/responses/500"
           }
         }
       }
