@@ -8,10 +8,7 @@ import {
 export async function getTransactionsController(req, res) {
   const response = await getTransactions(req.user._id);
 
-  res.json({
-
-    data: response,
-  });
+  res.json(response);
 }
 
 export async function getTransactionController(req, res) {
@@ -22,11 +19,7 @@ export async function getTransactionController(req, res) {
   if (transaction === null) {
     throw new createHttpError.NotFound('Transaction not found');
   }
-
-  res.json({
-
-    data: transaction,
-  });
+  res.json(transaction);
 }
 
 export async function getTransactionsByCategoryController(req, res) {
@@ -35,8 +28,5 @@ export async function getTransactionsByCategoryController(req, res) {
 
   const transactions = await getTransactionsByCategory(userId, categoryId);
 
-  res.json({
-   
-    data: transactions,
-  });
+  res.json(transactions);
 }

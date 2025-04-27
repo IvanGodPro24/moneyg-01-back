@@ -14,8 +14,8 @@ properties:
       income:
         type: array
         items:
-          $ref: '#/components/schemas/category.yaml'
+          $ref: '../schemas/category.yaml'
       expense:
         type: array
         items:
-          $ref: '#/components/schemas/category.yaml'
+          $ref: '../schemas/category.yaml'

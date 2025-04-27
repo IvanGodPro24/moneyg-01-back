@@ -7,24 +7,21 @@ import getTransactions from './transactions/getTransactions.js';
 import createTransaction from './transactions/createTransaction.js';
 import deleteTransaction from './transactions/deleteTransaction.js';
 import patchTransactions from './transactions/patchTransaction.js';
-import { checkToken } from '../middlewares/checkToken.js';
-import userCurrent from './user/userCurrent.js';
+
 import userUpdateRouter from './user/userUpdate.js';
 import userCurrentRouter from './user/userCurrent.js';
-import categoriesRouter from './categories.js';
+import categoriesRouter from './category/categories.js';
 
 const router = Router();
 
-router.use('/auth', authRegister);
-router.use('/auth', authLogin);
-router.use('/auth', authLogout);
+router.use('/register', authRegister);
+router.use('/login', authLogin);
+router.use('/logout', authLogout);
 
-router.use('/transactions', checkToken, getTransactions);
-router.use('/transactions', checkToken, createTransaction);
-router.use('/transactions', checkToken, deleteTransaction);
-router.use('/transactions', checkToken, patchTransactions);
-
-router.use('/user', userCurrent);
+router.use('/transactions', getTransactions);
+router.use('/transactions', createTransaction);
+router.use('/transactions', deleteTransaction);
+router.use('/transactions', patchTransactions);
 
 router.use('/categories', categoriesRouter);
 

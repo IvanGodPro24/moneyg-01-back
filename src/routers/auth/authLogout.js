@@ -5,6 +5,6 @@ import { checkToken } from '../../middlewares/checkToken.js';
 
 const router = Router();
 
-router.post('/logout', checkToken, ctrlWrapper(logoutUserController));
+router.post('/', checkToken, ctrlWrapper(logoutUserController));
 
 export default router;

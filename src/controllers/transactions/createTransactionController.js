@@ -17,14 +17,12 @@ export const createTransactionController = async (req, res) => {
 
   const result = await createTransaction({
     type,
-    category: foundCategory._id,
+    categoryId: foundCategory._id,
     date,
     sum,
     comment,
     userId,
   });
 
-  res.status(201).json({
-    data: result,
-  });
+  res.status(201).json(result);
 };

@@ -15,7 +15,7 @@ export const createCategory = async (data) => {
 export const initializeCategories = async () => {
   const incomeCategory = await findCategoryByTitle('Income');
   if (!incomeCategory) {
-    await createCategory({ title: 'Income', type: 'income' });
+    await createCategory({ title: 'Income' });
     console.log('Income category initialized.');
   }
 
@@ -35,7 +35,7 @@ export const initializeCategories = async () => {
   for (const categoryTitle of expenseCategories) {
     const existingCategory = await findCategoryByTitle(categoryTitle);
     if (!existingCategory) {
-      await createCategory({ title: categoryTitle, type: 'expense' });
+      await createCategory({ title: categoryTitle });
       console.log(`Expense category "${categoryTitle}" initialized.`);
     }
   }
