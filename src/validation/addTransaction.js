@@ -15,8 +15,15 @@ export const createTransactionSchema = Joi.object({
       'Other expenses',
       'Entertainment',
     )
-    .required(),
+    .when('type', {
+      is: 'expense',
+      then: Joi.required(),
+      otherwise: Joi.optional(),
+    }),
+
   date: Joi.string().required(),
+
   sum: Joi.number().required(),
+
   comment: Joi.string().required(),
 });
