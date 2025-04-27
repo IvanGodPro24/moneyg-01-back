@@ -7,11 +7,7 @@ import {
 export async function getTransactionsController(req, res) {
   const response = await getTransactions(req.user._id);
 
-  res.json({
-    status: 200,
-    message: 'Successfully found transactions!',
-    data: response,
-  });
+  res.json(response);
 }
 
 export async function getTransactionController(req, res) {
@@ -23,9 +19,5 @@ export async function getTransactionController(req, res) {
     throw new createHttpError.NotFound('Transaction not found');
   }
 
-  res.json({
-    status: 200,
-    message: 'Successfully found transaction!',
-    data: transaction,
-  });
+  res.json(transaction);
 }

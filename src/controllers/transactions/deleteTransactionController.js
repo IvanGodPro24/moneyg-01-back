@@ -14,5 +14,5 @@ export const deleteTransactionController = async (req, res) => {
     throw createHttpError(404, 'Transaction not found');
   }
 
-  res.status(204).send();
+  res.sendStatus(204);
 };

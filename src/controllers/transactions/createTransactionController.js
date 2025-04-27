@@ -6,9 +6,5 @@ export const createTransactionController = async (req, res) => {
     userId: req.user._id,
   });
 
-  res.status(201).json({
-    status: 201,
-    message: 'Successfully created a transaction!',
-    data: result,
-  });
+  res.status(201).json(result);
 };
