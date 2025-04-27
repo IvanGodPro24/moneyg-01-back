@@ -25,5 +25,5 @@ export const createTransactionSchema = Joi.object({
 
   sum: Joi.number().required(),
 
-  comment: Joi.string().required(),
+  comment: Joi.string().allow('').optional(),
 });
