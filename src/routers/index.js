@@ -11,6 +11,7 @@ import patchTransactions from './transactions/patchTransaction.js';
 import userUpdate from './user/userUpdate.js';
 import userCurrent from './user/userCurrent.js';
 import categoriesRouter from './category/categories.js';
+import summaryByMonthYearRouter from './summary/summaryByMonthYear.js';
 import { checkToken } from '../middlewares/checkToken.js';
 
 const router = Router();
@@ -25,6 +26,8 @@ router.use('/transactions', checkToken, deleteTransaction);
 router.use('/transactions', checkToken, patchTransactions);
 
 router.use('/categories', checkToken, categoriesRouter);
+
+router.use('/summary/month-year', summaryByMonthYearRouter);
 
 router.use('/user', checkToken, userCurrent);
 router.use('/user', checkToken, userUpdate);
