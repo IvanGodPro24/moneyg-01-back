@@ -8,15 +8,15 @@ import createTransaction from './transactions/createTransaction.js';
 import deleteTransaction from './transactions/deleteTransaction.js';
 import patchTransactions from './transactions/patchTransaction.js';
 
-import userUpdateRouter from './user/userUpdate.js';
-import userCurrentRouter from './user/userCurrent.js';
+import userUpdate from './user/userUpdate.js';
+import userCurrent from './user/userCurrent.js';
 import categoriesRouter from './category/categories.js';
 
 const router = Router();
 
-router.use('/register', authRegister);
-router.use('/login', authLogin);
-router.use('/logout', authLogout);
+router.use('/auth', authRegister);
+router.use('/auth', authLogin);
+router.use('/auth', authLogout);
 
 router.use('/transactions', getTransactions);
 router.use('/transactions', createTransaction);
@@ -25,7 +25,7 @@ router.use('/transactions', patchTransactions);
 
 router.use('/categories', categoriesRouter);
 
-router.use('/user', userUpdateRouter);
-router.use('/user', userCurrentRouter);
+router.use('/user', userCurrent);
+router.use('/user', userUpdate);
 
 export default router;

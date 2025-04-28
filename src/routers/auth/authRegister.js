@@ -10,7 +10,7 @@ const router = Router();
 const jsonParser = json();
 
 router.post(
-  '/',
+  '/register',
   jsonParser,
   validateBody(userRegisterSchema),
   ctrlWrapper(registerUserController),

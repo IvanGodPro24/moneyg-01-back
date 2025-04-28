@@ -10,7 +10,7 @@ const router = Router();
 const jsonParser = json();
 
 router.post(
-  '/',
+  '/login',
   jsonParser,
   validateBody(userLoginSchema),
   ctrlWrapper(loginUserController),

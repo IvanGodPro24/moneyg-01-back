@@ -48,12 +48,6 @@ responses:
         schema:
           type: object
           properties:
-            status:
-              type: integer
-              example: 201
-            message:
-              type: string
-              example: Successfully created a transaction!
             data:
               type: object
               $ref: '../../components/schemas/transaction.yaml'

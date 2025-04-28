@@ -12,7 +12,7 @@ const router = Router();
 router.get('/', ctrlWrapper(getTransactionsController));
 router.get('/:transactionId', isValidId, ctrlWrapper(getTransactionController));
 router.get(
-  '/category/:categoryId',
+  '/:categoryId',
   isValidId,
   ctrlWrapper(getTransactionsByCategoryController),
 );

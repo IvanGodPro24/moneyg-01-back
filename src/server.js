@@ -16,8 +16,7 @@ export const setupServer = () => {
 
   const PORT = Number(getEnvVar('PORT', 3000));
 
-  app.use('/auth', router);
-  app.use('/api', checkToken, router);
+  app.use(checkToken, router);
 
   app.use(notFoundHandler);
   app.use(errorHandler);
