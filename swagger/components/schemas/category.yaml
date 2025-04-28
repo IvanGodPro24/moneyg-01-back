@@ -1,0 +1,18 @@
+type: object
+properties:
+  _id:
+    type: string
+    format: uuid
+    description: ID categories
+    example: '65f1234abcd5678ef9012345'
+  title:
+    type: string
+    description: Category name
+    example: 'Products'
+  type:
+    type: string
+    enum:
+      - income
+      - expense
+    description: Category type ("income" or "expense")
+    example: 'expense'

@@ -1,0 +1,16 @@
+tags:
+  - Categories
+summary: Get all categories
+description: Gets a list of all income and expense categories.
+operationId: getCategories
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: Successfully obtaining categories
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/responses/categoriesResponse.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'

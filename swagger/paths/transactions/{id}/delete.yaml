@@ -17,4 +17,4 @@ responses:
   '204':
     description: Transaction successfully deleted (No Content)
   '404':
-    $ref: ../../../components/responses/404.yaml
+    $ref: '../../../components/responses/404.yaml'
