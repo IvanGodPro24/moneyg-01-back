@@ -27,7 +27,7 @@ router.use('/transactions', checkToken, patchTransactions);
 
 router.use('/categories', checkToken, categoriesRouter);
 
-router.use('/summary/month-year', summaryByMonthYearRouter);
+router.use('/summary/month-year', checkToken, summaryByMonthYearRouter);
 
 router.use('/user', checkToken, userCurrent);
 router.use('/user', checkToken, userUpdate);

@@ -7,7 +7,7 @@ import { getSummaryByMonthYearController } from '../../controllers/summary/summa
 const router = Router();
 const jsonParser = json();
 
-router.post(
+router.get(
   '/',
   jsonParser,
   validateBody(summaryByMonthYearSchema),
