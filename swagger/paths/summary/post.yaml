@@ -1,0 +1,69 @@
+tags:
+  - Summary
+summary: Get financial summary for a specific month and year
+description: Returns the total income and expenses, broken down by category, for the authenticated user for the specified month and year.
+operationId: getSummaryByMonthYear
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          month:
+            type: integer
+            description: The month number (1-12)
+            minimum: 1
+            maximum: 12
+            example: 4
+          year:
+            type: integer
+            description: The year (starting from 2020)
+            minimum: 2020
+            example: 2025
+        required:
+          - month
+          - year
+responses:
+  '200':
+    description: Successful response with the summary data.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            expenses:
+              type: object
+              properties:
+                byCategory:
+                  type: object
+                  description: An object where keys are expense category names and values are their total amounts.
+                  example:
+                    'Products': 2000
+                    'Car': 2500
+                    'Main expenses': 500
+                    'Leisure': 600
+                total:
+                  type: integer
+                  description: The total expenses for the specified period.
+                  example: 5600
+            income:
+              type: object
+              properties:
+                byCategory:
+                  type: object
+                  description: An object where keys are income category names and values are their total amounts.
+                  example:
+                    'Income': 7500
+                total:
+                  type: integer
+                  description: The total income for the specified period.
+                  example: 7500
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'
