@@ -27,6 +27,11 @@ export const checkToken = async (req, res, next) => {
     return;
   }
 
+  if (user.token !== token) {
+    next(createHttpError(401, 'Token is invalid or user is logged out'));
+    return;
+  }
+
   req.user = user;
 
   next();

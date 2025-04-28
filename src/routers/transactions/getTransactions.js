@@ -10,9 +10,11 @@ import {
 const router = Router();
 
 router.get('/', ctrlWrapper(getTransactionsController));
+
 router.get('/:transactionId', isValidId, ctrlWrapper(getTransactionController));
+
 router.get(
-  '/:categoryId',
+  '/category/:categoryId',
   isValidId,
   ctrlWrapper(getTransactionsByCategoryController),
 );
