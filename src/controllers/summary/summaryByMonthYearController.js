@@ -1,8 +1,22 @@
 import { getSummaryByMonthYear } from '../../services/summary/summaryByMonthYearService.js';
+import createHttpError from 'http-errors';
+import { summaryByMonthYearSchema } from '../../validation/summary/summaryByMonthYearSchema.js';
 
 export const getSummaryByMonthYearController = async (req, res) => {
-  const { month, year } = req.body;
+  const { month, year } = req.params;
   const userId = req.user._id;
+
+  const { error } = summaryByMonthYearSchema.validate({
+    month: Number(month),
+    year: Number(year),
+  });
+
+  if (error) {
+    throw createHttpError(
+      400,
+      error.details.map((detail) => detail.message),
+    );
+  }
 
   const report = await getSummaryByMonthYear(
     userId,

@@ -44,6 +44,9 @@ paths:
       $ref: '../swagger/paths/transactions/{id}/delete.yaml'
     patch:
       $ref: '../swagger/paths/transactions/{id}/patch.yaml'
+  /summary/{month}/{year}:
+    get:
+      $ref: '../swagger/paths/summary/get.yaml'
 components:
   securitySchemes:
     bearerAuth:
