@@ -14,7 +14,7 @@
       "url": "https://moneyg-01-back.onrender.com"
     },
     {
-      "url": "http://localhost:3000"
+      "url": "http://127.0.0.1:3000"
     }
   ],
   "tags": [
@@ -29,6 +29,10 @@
     {
       "name": "User",
       "description": "User operations."
+    },
+    {
+      "name": "Categories",
+      "description": "Operations with income and expense categories."
     }
   ],
   "paths": {
@@ -146,7 +150,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfull login a user",
+            "description": "Successful user login",
             "content": {
               "application/json": {
                 "schema": {
@@ -159,6 +163,11 @@
                     "user": {
                       "type": "object",
                       "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "The unique identifier of the user",
+                          "example": 123
+                        },
                         "name": {
                           "type": "string",
                           "example": "John Doe"
@@ -167,6 +176,12 @@
                           "type": "string",
                           "format": "email",
                           "example": "john.doe@example.com"
+                        },
+                        "balance": {
+                          "type": "number",
+                          "format": "float",
+                          "description": "The current balance of the user",
+                          "example": 150.75
                         }
                       }
                     },
@@ -207,57 +222,6 @@
           },
           "400": {
             "$ref": "#/components/responses/400"
-          },
-          "500": {
-            "$ref": "#/components/responses/500"
-          }
-        }
-      }
-    },
-    "/user/current": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get information about user",
-        "operationId": "currentUser",
-        "description": "Get an information about current user",
-        "responses": {
-          "200": {
-            "description": "Successfull get an information about user",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "user"
-                  ],
-                  "properties": {
-                    "user": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "example": "John Doe"
-                        },
-                        "balance": {
-                          "type": "number",
-                          "example": 0
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -431,19 +395,7 @@
                   },
                   "category": {
                     "type": "string",
-                    "description": "Transaction category",
-                    "enum": [
-                      "Main expenses",
-                      "Products",
-                      "Car",
-                      "Self care",
-                      "Child care",
-                      "Household products",
-                      "Education",
-                      "Leisure",
-                      "Other expenses",
-                      "Entertainment"
-                    ],
+                    "description": "Name of the transaction category (must be an existing category)",
                     "example": "Products"
                   },
                   "date": {
@@ -489,6 +441,12 @@
           },
           "404": {
             "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
           }
         }
       }
@@ -571,6 +529,9 @@
           "204": {
             "description": "Transaction successfully deleted (No Content)"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           }
@@ -582,7 +543,7 @@
         ],
         "summary": "Update transaction by ID",
         "operationId": "updateTransaction",
-        "description": "Update a transaction by its ID",
+        "description": "Updates an existing transaction by its ID for the authenticated user.",
         "security": [
           {
             "bearerAuth": []
@@ -590,17 +551,17 @@
         ],
         "parameters": [
           {
-            "name": "id",
             "in": "path",
+            "name": "id",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "67f24579c88bd1471149b7ca"
             },
-            "description": "Unique transaction id"
+            "description": "The ID of the transaction to update"
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -612,23 +573,29 @@
                       "income",
                       "expense"
                     ],
+                    "description": "Transaction type",
                     "example": "income"
                   },
                   "category": {
                     "type": "string",
-                    "example": "Products"
+                    "description": "Category name of the transaction",
+                    "example": "Salary"
                   },
                   "date": {
                     "type": "string",
-                    "example": "2024-04-25"
+                    "format": "date",
+                    "description": "Transaction date",
+                    "example": "2025-04-27"
                   },
                   "sum": {
                     "type": "number",
-                    "example": 150
+                    "description": "Transaction amount",
+                    "example": 1200
                   },
                   "comment": {
                     "type": "string",
-                    "example": "Purchase in a store"
+                    "description": "Optional comment",
+                    "example": "Monthly salary"
                   }
                 }
               }
@@ -637,13 +604,22 @@
         },
         "responses": {
           "200": {
-            "description": "Transaction successfully updated",
+            "description": "Successfully updated the transaction",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully updated transaction!"
+                    },
                     "data": {
+                      "type": "object",
                       "$ref": "#/components/schemas/transaction"
                     }
                   }
@@ -659,9 +635,216 @@
           },
           "404": {
             "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/summary/{month}/{year}": {
+      "get": {
+        "tags": [
+          "Summary"
+        ],
+        "summary": "Get financial summary for a specific month and year",
+        "description": "Returns the total income and expenses, broken down by category, for the authenticated user for the specified month and year.",
+        "operationId": "getSummaryByMonthYear",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "year",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The year (starting from 2020)",
+              "minimum": 2020,
+              "example": 2025
+            }
+          },
+          {
+            "in": "path",
+            "name": "month",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "The month number (1-12)",
+              "minimum": 1,
+              "maximum": 12,
+              "example": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with the summary data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "expenses": {
+                      "type": "object",
+                      "properties": {
+                        "byCategory": {
+                          "type": "object",
+                          "description": "An object where keys are expense category names and values are their total amounts.",
+                          "example": {
+                            "Products": 2000,
+                            "Car": 2500,
+                            "Main expenses": 500,
+                            "Leisure": 600
+                          }
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "The total expenses for the specified period.",
+                          "example": 5600
+                        }
+                      }
+                    },
+                    "income": {
+                      "type": "object",
+                      "properties": {
+                        "byCategory": {
+                          "type": "object",
+                          "description": "An object where keys are income category names and values are their total amounts.",
+                          "example": {
+                            "Income": 7500
+                          }
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "The total income for the specified period.",
+                          "example": 7500
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
           },
           "500": {
             "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all categories",
+        "description": "Gets a list of all income and expense categories.",
+        "operationId": "getCategories",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully obtaining categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": [
+                    "Income",
+                    "Main expenses",
+                    "Products",
+                    "Car",
+                    "Self care",
+                    "Child care",
+                    "Household products",
+                    "Education",
+                    "Leisure",
+                    "Other expenses",
+                    "Entertainment"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get transactions by category ID",
+        "description": "Get all transactions for the authenticated user within a specific category.",
+        "operationId": "getTransactionsByCategory",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "categoryId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "660ab7235d4d0c001c776ff8"
+            },
+            "description": "The ID of the category to filter transactions by"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found transactions by category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found transactions by category!"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/transaction"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
           }
         }
       }
@@ -709,17 +892,15 @@
       },
       "transaction": {
         "type": "object",
-        "required": [
-          "userId",
-          "type",
-          "category",
-          "date",
-          "sum"
-        ],
         "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Transaction ID (generated by the server)",
+            "example": "65f1234abcd5678ef9012345"
+          },
           "userId": {
             "type": "string",
-            "description": "ID of the user who owns the transaction",
+            "description": "ID of the user who owns the transaction (generated by the server)",
             "example": "660ab7235d4d0c001c776ff9"
           },
           "type": {
@@ -733,36 +914,35 @@
           },
           "category": {
             "type": "string",
-            "description": "Transaction category",
-            "enum": [
-              "Main expenses",
-              "Products",
-              "Car",
-              "Self care",
-              "Child care",
-              "Household products",
-              "Education",
-              "Leisure",
-              "Other expenses",
-              "Entertainment"
-            ],
+            "description": "Category of the transaction. For 'expense', one of 'Main expenses', 'Products', 'Car', 'Self care', 'Child care', 'Household products', 'Education', 'Leisure', 'Other expenses', 'Entertainment'. For 'income', 'Income'.",
             "example": "Products"
           },
           "date": {
             "type": "string",
-            "format": "date",
-            "description": "Transaction date (ISO 8601 format)",
+            "description": "Transaction date (YYYY-MM-DD or ISO 8601 format)",
             "example": "2025-04-23"
           },
           "sum": {
-            "type": "string",
-            "description": "Amount of the transaction stored as string",
-            "example": "350"
+            "type": "number",
+            "description": "Amount of the transaction",
+            "example": 350
           },
           "comment": {
             "type": "string",
-            "description": "Optional comment about the transaction",
+            "description": "Optional comment",
             "example": "Grocery shopping"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of when the transaction was created (generated by the server)",
+            "example": "2025-04-29T20:00:00.000Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of when the transaction was last updated (generated by the server)",
+            "example": "2025-04-29T20:15:00.000Z"
           }
         }
       }
@@ -881,6 +1061,32 @@
                 "data": {
                   "type": "string",
                   "example": "Email in use"
+                }
+              }
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Validation error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "error"
+                },
+                "code": {
+                  "type": "integer",
+                  "example": 422
+                },
+                "message": {
+                  "type": "string",
+                  "example": {
+                    "Validation failed": "sum must be between 0.01 and 1000000"
+                  }
                 }
               }
             }

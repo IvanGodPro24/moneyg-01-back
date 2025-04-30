@@ -1,0 +1,16 @@
+description: Validation error
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        code:
+          type: integer
+          example: 422
+        message:
+          type: string
+          example:
+            Validation failed: sum must be between 0.01 and 1000000
