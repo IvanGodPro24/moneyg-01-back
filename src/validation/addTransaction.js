@@ -4,6 +4,7 @@ export const createTransactionSchema = Joi.object({
   type: Joi.string().valid('income', 'expense').required(),
   category: Joi.string()
     .valid(
+      'Income',
       'Main expenses',
       'Products',
       'Car',
@@ -15,11 +16,7 @@ export const createTransactionSchema = Joi.object({
       'Other expenses',
       'Entertainment',
     )
-    .when('type', {
-      is: 'expense',
-      then: Joi.required(),
-      otherwise: Joi.optional(),
-    }),
+    .required(),
 
   date: Joi.string().required(),
 

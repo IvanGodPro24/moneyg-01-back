@@ -1,6 +1,7 @@
 import createHttpError from 'http-errors';
 import { createTransaction } from '../../services/transactions/createTransaction.js';
 import Category from '../../db/model/Categories.js';
+import { updateUserBalance } from '../../utils/updateUserBalance.js';
 
 export const createTransactionController = async (req, res) => {
   const { type, category: categoryTitle, date, sum, comment } = req.body;
@@ -23,6 +24,8 @@ export const createTransactionController = async (req, res) => {
     comment,
     userId,
   });
+
+  await updateUserBalance(userId, null, { type, sum });
 
   res.status(201).json(result);
 };
