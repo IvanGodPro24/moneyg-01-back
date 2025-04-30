@@ -28,8 +28,10 @@ export const loginUser = async (userData) => {
 
   return {
     user: {
+      _id: user._id,
       name: user.name,
       email: user.email,
+      balance: user.balance,
     },
     token,
   };

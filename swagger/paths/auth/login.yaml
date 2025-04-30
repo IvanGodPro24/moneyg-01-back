@@ -26,7 +26,7 @@ requestBody:
             example: 'securePassword123'
 responses:
   '200':
-    description: Successfull login a user
+    description: Successful user login
     content:
       application/json:
         schema:
@@ -38,6 +38,10 @@ responses:
             user:
               type: object
               properties:
+                id:
+                  type: integer
+                  description: The unique identifier of the user
+                  example: 123
                 name:
                   type: string
                   example: 'John Doe'
@@ -45,6 +49,11 @@ responses:
                   type: string
                   format: email
                   example: 'john.doe@example.com'
+                balance:
+                  type: number
+                  format: float
+                  description: The current balance of the user
+                  example: 150.75
             token:
               type: string
               example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDdkZDA3NDE3NmIyNmI2NzhmNDcxYSIsImlhdCI6MTc0NTM5OTk5OSwiZXhwIjoxNzQ1NDg2Mzk5fQ.SO0oSy_qAwmBBYuNciENTjefeojFS5fbmF-tishRyxQ'
