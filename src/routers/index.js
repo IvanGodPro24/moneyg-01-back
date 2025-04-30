@@ -13,7 +13,6 @@ import userCurrent from './user/userCurrent.js';
 import categoriesRouter from './category/categories.js';
 import summaryByMonthYearRouter from './summary/summaryByMonthYear.js';
 import { checkToken } from '../middlewares/checkToken.js';
-import monoCurrency from './currency/monoCurrency.js';
 
 const router = Router();
 
@@ -32,7 +31,5 @@ router.use('/summary', checkToken, summaryByMonthYearRouter);
 
 router.use('/user', checkToken, userCurrent);
 router.use('/user', checkToken, userUpdate);
-
-router.use('/currency', monoCurrency);
 
 export default router;
