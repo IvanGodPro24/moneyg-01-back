@@ -39,7 +39,9 @@ export const createTransactionController = async (req, res) => {
     userId,
   });
 
+  const populatedResult = await result.populate('categoryId', 'title');
+
   await updateUserBalance(userId, null, { type, sum });
 
-  res.status(201).json(result);
+  res.status(201).json(populatedResult);
 };
