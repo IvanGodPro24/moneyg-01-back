@@ -17,7 +17,7 @@ properties:
     example: expense
   category:
     type: string
-    description: Category of the transaction. For 'expense', one of : 'Main expenses', 'Products', 'Car', 'Self care', 'Child care', 'Household products', 'Education', 'Leisure', 'Other expenses', 'Entertainment'. For 'income', 'Income'.
+    description: Category of the transaction. For 'expense', one of 'Main expenses', 'Products', 'Car', 'Self care', 'Child care', 'Household products', 'Education', 'Leisure', 'Other expenses', 'Entertainment'. For 'income', 'Income'.
     example: Products
   date:
     type: string
