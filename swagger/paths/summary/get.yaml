@@ -5,27 +5,24 @@ description: Returns the total income and expenses, broken down by category, for
 operationId: getSummaryByMonthYear
 security:
   - bearerAuth: []
-requestBody:
-  required: true
-  content:
-    application/json:
-      schema:
-        type: object
-        properties:
-          month:
-            type: integer
-            description: The month number (1-12)
-            minimum: 1
-            maximum: 12
-            example: 4
-          year:
-            type: integer
-            description: The year (starting from 2020)
-            minimum: 2020
-            example: 2025
-        required:
-          - month
-          - year
+parameters:
+  - in: path
+    name: year
+    required: true
+    schema:
+      type: integer
+      description: The year (starting from 2020)
+      minimum: 2020
+      example: 2025
+  - in: path
+    name: month
+    required: true
+    schema:
+      type: integer
+      description: The month number (1-12)
+      minimum: 1
+      maximum: 12
+      example: 5
 responses:
   '200':
     description: Successful response with the summary data.
