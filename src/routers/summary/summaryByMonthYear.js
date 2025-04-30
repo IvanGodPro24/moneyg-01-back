@@ -8,7 +8,7 @@ const router = Router();
 const jsonParser = json();
 
 router.get(
-  '/:month/:year',
+  '/',
   jsonParser,
   validateBody(summaryByMonthYearSchema),
   ctrlWrapper(getSummaryByMonthYearController),

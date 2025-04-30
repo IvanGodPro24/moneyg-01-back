@@ -3,7 +3,7 @@ import createHttpError from 'http-errors';
 import { summaryByMonthYearSchema } from '../../validation/summary/summaryByMonthYearSchema.js';
 
 export const getSummaryByMonthYearController = async (req, res) => {
-  const { month, year } = req.params;
+  const { month, year } = req.query;
   const userId = req.user._id;
 
   const { error } = summaryByMonthYearSchema.validate({
