@@ -1,7 +1,7 @@
 import createHttpError from 'http-errors';
 import { createTransaction } from '../../services/transactions/createTransaction.js';
-import Category from '../../db/model/Categories.js';
 import { updateUserBalance } from '../../utils/updateUserBalance.js';
+import { findCategoryByTitle } from '../../services/categories/categoriesService.js';
 
 export const createTransactionController = async (req, res) => {
   const { type, category: categoryTitle, date, sum, comment } = req.body;
@@ -14,7 +14,7 @@ export const createTransactionController = async (req, res) => {
   }
 
   if (categoryTitle) {
-    const foundCategory = await Category.findOne({ title: categoryTitle });
+    const foundCategory = await findCategoryByTitle(categoryTitle);
     if (!foundCategory) {
       throw createHttpError(
         404,
@@ -23,7 +23,7 @@ export const createTransactionController = async (req, res) => {
     }
     categoryId = foundCategory._id;
   } else if (type === 'income') {
-    const incomeCategory = await Category.findOne({ title: 'Income' });
+    const incomeCategory = await findCategoryByTitle('Income');
     if (!incomeCategory) {
       throw createHttpError(500, 'Income category not found in database');
     }
