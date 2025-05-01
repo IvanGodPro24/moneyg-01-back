@@ -2,12 +2,12 @@ tags:
   - User
 security:
   - bearerAuth: []
-summary: Get information about user
-operationId: currentUser
-description: 'Get an information about current user'
+summary: Get current user information
+description: Get information in collection about the current authenticated user.
+operationId: getCurrent
 responses:
   '200':
-    description: Successfull get an information about user
+    description: Successfully get current user
     content:
       application/json:
         schema:
@@ -17,14 +17,8 @@ responses:
           properties:
             user:
               type: object
-              properties:
-                name:
-                  type: string
-                  example: 'John Doe'
-                balance:
-                  type: number
-                  example: 0
+              $ref: ../../components/schemas/user.yaml
   '401':
-    $ref: ../../components/responses/401.yaml
-  '500':
-    $ref: ../../components/responses/500.yaml
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'

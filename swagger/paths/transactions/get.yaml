@@ -11,12 +11,9 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: '../../components/schemas/transaction.yaml'
+          type: array
+          items:
+            $ref: '../../components/schemas/transaction.yaml'
   '401':
     $ref: '../../components/responses/401.yaml'
   '404':

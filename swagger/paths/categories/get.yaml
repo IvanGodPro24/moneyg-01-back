@@ -11,6 +11,20 @@ responses:
     content:
       application/json:
         schema:
-          $ref: '#/components/responses/categoriesResponse.yaml'
+          type: array
+          items:
+            type: string
+          example:
+            - Income
+            - Main expenses
+            - Products
+            - Car
+            - Self care
+            - Child care
+            - Household products
+            - Education
+            - Leisure
+            - Other expenses
+            - Entertainment
   '401':
-    $ref: '../../../components/responses/401.yaml'
+    $ref: ../../components/responses/401.yaml

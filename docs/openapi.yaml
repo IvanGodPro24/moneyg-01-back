@@ -13,9 +13,11 @@ tags:
     description: Auth operations.
   - name: User
     description: User operations.
+  - name: Categories
+    description: Operations with income and expense categories.
 servers:
   - url: https://moneyg-01-back.onrender.com
-  - url: http://localhost:3000
+  - url: http://127.0.0.1:3000
 paths:
   /auth/register:
     post:
@@ -44,9 +46,15 @@ paths:
       $ref: '../swagger/paths/transactions/{id}/delete.yaml'
     patch:
       $ref: '../swagger/paths/transactions/{id}/patch.yaml'
-  /summary/{month}/{year}:
+  /summary:
     get:
       $ref: '../swagger/paths/summary/get.yaml'
+  /categories:
+    get:
+      $ref: '../swagger/paths/categories/get.yaml'
+  /categories/{categoryId}:
+    get:
+      $ref: '../swagger/paths/categories/{categoryId}/get.yaml'
 components:
   securitySchemes:
     bearerAuth:
