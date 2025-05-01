@@ -15,22 +15,17 @@ requestBody:
           name:
             type: string
             description: User's name
-            example: John Updated
+            example: John Doe
           email:
             type: string
             format: email
             maxLength: 64
             description: Valid email address
-            example: johndoe@example.com
+            example: test@example.com
           balance:
             type: number
             description: User's balance
-            example: 2000
-          avatarURL:
-            type: string
-            format: uri
-            description: URL to user's avatar
-            example: https://example.com/avatar.jpg
+            example: 0
         additionalProperties: false
         minProperties: 1
 responses:
@@ -40,19 +35,7 @@ responses:
       application/json:
         schema:
           type: object
-          properties:
-            name:
-              type: string
-              example: John Updated
-            email:
-              type: string
-              example: johndoe@example.com
-            balance:
-              type: number
-              example: 2000
-            avatarURL:
-              type: string
-              example: https://example.com/avatar.jpg
+          $ref: ../../components/schemas/user.yaml
   '400':
     $ref: ../../components/responses/400.yaml
   '401':

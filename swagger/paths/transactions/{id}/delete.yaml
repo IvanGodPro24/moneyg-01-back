@@ -14,8 +14,13 @@ parameters:
       example: 67f24579c88bd1471149b7ca
     description: The ID of the transaction to delete
 responses:
-  '204':
-    description: Transaction successfully deleted (No Content)
+  '200':
+    description: Transaction successfully deleted
+    content:
+      application/json:
+        schema:
+          type: object
+          $ref: ../../../components/schemas/transaction.yaml
   '401':
     $ref: '../../../components/responses/401.yaml'
   '404':

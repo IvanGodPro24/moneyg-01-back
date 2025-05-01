@@ -21,3 +21,7 @@ properties:
     description: "User's password"
     type: string
     example: 'qwerty1234'
+  balance:
+    description: "User's balance"
+    type: number
+    example: 0

@@ -28,6 +28,9 @@ paths:
   /auth/logout:
     post:
       $ref: '../swagger/paths/auth/logout.yaml'
+  /user/current:
+    get:
+      $ref: '../swagger/paths/user/current.yaml'
   /user/update:
     patch:
       $ref: '../swagger/paths/user/update.yaml'
@@ -43,7 +46,7 @@ paths:
       $ref: '../swagger/paths/transactions/{id}/delete.yaml'
     patch:
       $ref: '../swagger/paths/transactions/{id}/patch.yaml'
-  /summary/{month}/{year}:
+  /summary:
     get:
       $ref: '../swagger/paths/summary/get.yaml'
   /categories:

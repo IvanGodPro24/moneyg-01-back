@@ -1,0 +1,24 @@
+tags:
+  - User
+security:
+  - bearerAuth: []
+summary: Get current user information
+description: Get information in collection about the current authenticated user.
+operationId: getCurrent
+responses:
+  '200':
+    description: Successfully get current user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - user
+          properties:
+            user:
+              type: object
+              $ref: ../../components/schemas/user.yaml
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'
