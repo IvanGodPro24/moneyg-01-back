@@ -3,6 +3,7 @@ import { updateContact } from '../../services/transactions/patchTransaction.js';
 import { getTransaction } from '../../services/transactions/getTransactions.js';
 import { updateUserBalance } from '../../utils/updateUserBalance.js';
 import { findCategoryByTitle } from '../../services/categories/categoriesService.js';
+import { findUserById } from '../../services/user/userCurrentService.js';
 
 export const patchTransactionController = async (req, res) => {
   const { type, category: categoryTitle, date, sum, comment } = req.body;
@@ -11,11 +12,13 @@ export const patchTransactionController = async (req, res) => {
 
   let categoryId;
 
-  if (type === 'expense' && !categoryTitle) {
-    throw createHttpError(400, 'Category is required for expense transactions');
-  }
-
-  if (categoryTitle) {
+  if (type === 'expense') {
+    if (!categoryTitle) {
+      throw createHttpError(
+        400,
+        'Category is required for expense transactions',
+      );
+    }
     const foundCategory = await findCategoryByTitle(categoryTitle);
     if (!foundCategory) {
       throw createHttpError(
@@ -33,8 +36,8 @@ export const patchTransactionController = async (req, res) => {
   }
 
   const oldTransaction = await getTransaction(transactionId, userId);
-
   if (!oldTransaction) throw createHttpError(404, 'Transaction not found');
+  console.log('Old Transaction in Controller:', oldTransaction);
 
   const result = await updateContact(transactionId, {
     type,
@@ -44,15 +47,22 @@ export const patchTransactionController = async (req, res) => {
     comment,
     userId,
   });
-
   if (!result) throw createHttpError(404, 'Transaction not found');
+  console.log('Result after updateContact in Controller:', result);
 
   const populatedResult = await result.populate('categoryId', 'title');
+  console.log('Populated Result in Controller:', populatedResult);
 
-  await updateUserBalance(userId, oldTransaction, result);
+  await updateUserBalance(userId, oldTransaction, populatedResult);
+
+  const updatedUser = await findUserById(userId);
+  console.log(
+    'Updated User Balance in Controller:',
+    updatedUser ? updatedUser.balance : req.user.balance,
+  );
 
   res.json({
     ...populatedResult.toObject(),
-    userBalance: req.user.balance,
+    userBalance: updatedUser ? updatedUser.balance : req.user.balance,
   });
 };
