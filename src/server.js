@@ -9,7 +9,11 @@ import router from './routers/index.js';
 export const setupServer = () => {
   const app = express();
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: ['http://localhost:5173', 'https://moneyg-01-front.onrender.com'],
+    }),
+  );
 
   app.use('/api-docs', swaggerDocs());
 
