@@ -19,10 +19,11 @@ export const loginUser = async (userData) => {
 
   const user = await User.findOne({ email });
 
+  if (!user) throw createHttpError(401, 'User not found!');
+
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
-  if (!user || !isPasswordValid)
-    throw createHttpError(401, 'Invalid credentials');
+  if (!isPasswordValid) throw createHttpError(401, 'Invalid credentials!');
 
   const token = await updateUserWithToken(user._id);
 
