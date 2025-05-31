@@ -1,9 +1,9 @@
 import createHttpError from 'http-errors';
 
-export function validateBody(schema) {
+export function validateBody(schema, query = false) {
   return async (req, _res, next) => {
     try {
-      await schema.validateAsync(req.body, {
+      await schema.validateAsync(query ? req.query : req.body, {
         abortEarly: false,
       });
       next();
