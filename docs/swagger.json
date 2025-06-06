@@ -660,7 +660,6 @@
           {
             "in": "query",
             "name": "month",
-            "required": true,
             "schema": {
               "type": "integer",
               "description": "The month number (1-12)",
