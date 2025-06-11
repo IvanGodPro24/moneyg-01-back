@@ -6,7 +6,9 @@ export const updateUserController = async (req, res) => {
   const userId = req.user._id;
   const updateData = { ...req.body };
 
-  if (req.file) {
+  if (req.body.clearAvatar === 'true') {
+    updateData.avatarURL = null;
+  } else if (req.file) {
     const avatarURL = await saveFileToCloudinary(req.file);
     updateData.avatarURL = avatarURL;
   }

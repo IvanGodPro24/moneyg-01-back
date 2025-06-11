@@ -16,4 +16,5 @@ export const updateUserSchema = Joi.object({
   email: Joi.string().email().max(64).optional(),
   balance: Joi.number().optional(),
   avatarURL: Joi.string().uri().optional(),
+  clearAvatar: Joi.string().optional(),
 });

@@ -6,5 +6,7 @@ export const getUserController = async (req, res) => {
 
   if (!user) throw createHttpError(404, 'User not found!');
 
-  res.json({ user: { name: user.name, balance: user.balance } });
+  res.json({
+    user: { name: user.name, balance: user.balance, avatarURL: user.avatarURL },
+  });
 };
