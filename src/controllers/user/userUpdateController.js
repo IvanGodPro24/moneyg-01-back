@@ -17,5 +17,13 @@ export const updateUserController = async (req, res) => {
 
   if (!updatedUser) throw createHttpError(404, 'User not found');
 
-  res.json(updatedUser);
+  res.json({
+    user: {
+      name: updatedUser.name,
+      email: updatedUser.email,
+      balance: updatedUser.balance,
+      avatarURL: updatedUser.avatarURL,
+      registrationDate: updatedUser.createdAt,
+    },
+  });
 };
