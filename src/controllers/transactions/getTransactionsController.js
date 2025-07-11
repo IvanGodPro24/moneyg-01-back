@@ -4,11 +4,27 @@ import {
   getTransactions,
   getTransactionsByCategory,
 } from '../../services/transactions/getTransactions.js';
+import { parsePaginationParams } from '../../utils/parsePaginationParams.js';
+import { parseSortParams } from '../../utils/parseSortParams.js';
+import { parseFilterParams } from '../../utils/parseFilterParams.js';
 
 export async function getTransactionsController(req, res) {
-  const response = await getTransactions(req.user._id);
+  const { page, perPage } = parsePaginationParams(req.query);
 
-  res.json(response);
+  const { sortOrder, sortBy } = parseSortParams(req.query);
+
+  const filter = parseFilterParams(req.query);
+
+  const transactions = await getTransactions(
+    req.user._id,
+    page,
+    perPage,
+    sortOrder,
+    sortBy,
+    filter
+  );
+
+  res.json(transactions);
 }
 
 export async function getTransactionController(req, res) {

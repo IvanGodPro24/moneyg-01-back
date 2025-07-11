@@ -33,6 +33,8 @@ export const loginUser = async (userData) => {
       name: user.name,
       email: user.email,
       balance: user.balance,
+      avatarURL: user.avatarURL,
+      registrationDate: user.createdAt,
     },
     token,
   };
