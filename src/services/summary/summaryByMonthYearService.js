@@ -26,6 +26,9 @@ export const getSummaryByMonthYear = async (userId, month, year) => {
 
   transactions.forEach((transaction) => {
     const { type, categoryId, sum } = transaction;
+
+    if (!categoryId || !categoryId.title) return;
+
     const categoryTitle = categoryId.title;
 
     if (type === 'expense') {
