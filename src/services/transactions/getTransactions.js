@@ -35,16 +35,16 @@ export async function getTransactions(
         from: 'categories',
         localField: 'categoryId',
         foreignField: '_id',
-        as: 'categoryData',
+        as: 'categoryId',
       },
     },
-    { $unwind: '$categoryData' },
+    { $unwind: '$categoryId' },
   ];
 
   if (filter.categoryTitle) {
     pipeline.push({
       $match: {
-        'categoryData.title': {
+        'categoryId.title': {
           $regex: filter.categoryTitle,
           $options: 'i',
         },
@@ -56,7 +56,7 @@ export async function getTransactions(
 
   if (sortOrder && sortBy) {
     const sortField =
-      sortBy === 'categoryTitle' ? 'categoryData.title' : sortBy;
+      sortBy === 'categoryTitle' ? 'categoryId.title' : sortBy;
 
     pipeline.push({ $sort: { [sortField]: sortOrder === 'asc' ? 1 : -1 } });
   }
