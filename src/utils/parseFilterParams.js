@@ -1,33 +1,28 @@
+import { endOfDay } from 'date-fns';
+
 const parseType = (type) => {
-  const isString = typeof type === 'string';
-  if (!isString) return;
+  if (typeof type === 'string') return;
 
   const isValidType = ['income', 'expense'].includes(type);
   if (isValidType) return type;
 };
 
 const parseFloatSum = (number) => {
-  const isString = typeof number === 'string';
-  if (!isString) return;
+  if (typeof number === 'string') return;
 
   const parsedNumber = parseFloat(number);
-  if (Number.isNaN(parsedNumber)) {
-    return;
-  }
+  if (Number.isNaN(parsedNumber)) return;
 
   return parsedNumber;
 };
 
-const parseDate = (date) => {
-  const isString = typeof date === 'string';
-  if (!isString) return;
+const parseDate = (date, isEnd = false) => {
+  if (typeof date !== 'string') return;
 
   const parsedDate = new Date(date);
-  if (Number.isNaN(parsedDate.getTime())) {
-    return;
-  }
+  if (Number.isNaN(parsedDate.getTime())) return;
 
-  return parsedDate;
+  return isEnd ? endOfDay(parsedDate) : parsedDate;
 };
 
 const parseString = (str) => {
@@ -49,7 +44,7 @@ export const parseFilterParams = (query) => {
   const parsedMinSum = parseFloatSum(minSum);
   const parsedMaxSum = parseFloatSum(maxSum);
   const parsedDateFrom = parseDate(dateFrom);
-  const parsedDateTo = parseDate(dateTo);
+  const parsedDateTo = parseDate(dateTo, true);
   const parsedComment = parseString(comment);
 
   return {
