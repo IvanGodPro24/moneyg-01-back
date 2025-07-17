@@ -1,14 +1,14 @@
 import { endOfDay } from 'date-fns';
 
 const parseType = (type) => {
-  if (typeof type === 'string') return;
+  if (typeof type !== 'string') return;
 
   const isValidType = ['income', 'expense'].includes(type);
   if (isValidType) return type;
 };
 
 const parseFloatSum = (number) => {
-  if (typeof number === 'string') return;
+  if (typeof number !== 'string') return;
 
   const parsedNumber = parseFloat(number);
   if (Number.isNaN(parsedNumber)) return;
@@ -26,8 +26,7 @@ const parseDate = (date, isEnd = false) => {
 };
 
 const parseString = (str) => {
-  const isString = typeof str === 'string';
-  if (!isString) return;
+  if (typeof str !== 'string') return;
 
   const trimmedStr = str.trim();
   if (trimmedStr.length === 0) return;
