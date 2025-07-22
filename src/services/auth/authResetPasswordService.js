@@ -37,7 +37,7 @@ export const requestResetToken = async (email) => {
   const html = template({
     name: user.name,
     link: `${getEnvVar('APP_DOMAIN')}/reset-password?token=${resetToken}`,
-    frontendUrl: getEnvVar('APP_FRONT'),
+    frontendUrl: getEnvVar('APP_DOMAIN'),
     year: new Date().getFullYear(),
   });
 
