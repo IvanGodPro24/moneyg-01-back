@@ -26,6 +26,11 @@ export const loginOrSignupWithGoogle = async (code) => {
       balance: 0,
       avatarURL: payload.picture || '',
     });
+  } else {
+    if (!user.avatarURL && payload.picture) {
+      user.avatarURL = payload.picture;
+      await user.save();
+    }
   }
 
   const token = await updateUserWithToken(user._id);
