@@ -12,9 +12,6 @@
   "servers": [
     {
       "url": "https://moneyg-01-back.onrender.com"
-    },
-    {
-      "url": "http://127.0.0.1:3000"
     }
   ],
   "tags": [
