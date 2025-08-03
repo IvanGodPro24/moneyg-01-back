@@ -1,4 +1,4 @@
-# MoneyG Backend
+# Money Guard Backend
 
 **MoneyG Backend** is the server-side component of the MoneyG personal finance management application. It provides RESTful APIs for user authentication, transaction management, and statistical analysis. The backend is built using Node.js and Express.js, ensuring scalability and performance.
 
@@ -39,7 +39,7 @@ Ensure you have Node.js (v16 or higher) and MongoDB installed.
    ```
 
 4. Create a `.env` file in the root directory based on `.env.example` and configure the necessary environment variables.
-j
+   j
 5. Start the development server:
 
    ```bash
