@@ -17,23 +17,7 @@ tags:
     description: Operations with income and expense categories.
 servers:
   - url: https://moneyg-01-back.onrender.com
-  - url: http://127.0.0.1:3000
 paths:
-  /auth/register:
-    post:
-      $ref: '../swagger/paths/auth/register.yaml'
-  /auth/login:
-    post:
-      $ref: '../swagger/paths/auth/login.yaml'
-  /auth/logout:
-    post:
-      $ref: '../swagger/paths/auth/logout.yaml'
-  /user/current:
-    get:
-      $ref: '../swagger/paths/user/current.yaml'
-  /user/update:
-    patch:
-      $ref: '../swagger/paths/user/update.yaml'
   /transactions:
     get:
       $ref: ../swagger/paths/transactions/get.yaml
@@ -46,15 +30,42 @@ paths:
       $ref: '../swagger/paths/transactions/{id}/delete.yaml'
     patch:
       $ref: '../swagger/paths/transactions/{id}/patch.yaml'
-  /summary:
+  /auth/register:
+    post:
+      $ref: '../swagger/paths/auth/register.yaml'
+  /auth/login:
+    post:
+      $ref: '../swagger/paths/auth/login.yaml'
+  /auth/logout:
+    post:
+      $ref: '../swagger/paths/auth/logout.yaml'
+  /auth/request-reset-email:
+    post:
+      $ref: '../swagger/paths/auth/requestResetEmail.yaml'
+  /auth/reset-password:
+    post:
+      $ref: '../swagger/paths/auth/resetPassword.yaml'
+  /auth/get-oauth-url:
     get:
-      $ref: '../swagger/paths/summary/get.yaml'
+      $ref: '../swagger/paths/auth/getOauthUrl.yaml'
+  /auth/confirm-oauth:
+    post:
+      $ref: '../swagger/paths/auth/confirmOauth.yaml'
+  /user/current:
+    get:
+      $ref: '../swagger/paths/user/current.yaml'
+  /user/update:
+    patch:
+      $ref: '../swagger/paths/user/update.yaml'
   /categories:
     get:
       $ref: '../swagger/paths/categories/get.yaml'
   /categories/{categoryId}:
     get:
       $ref: '../swagger/paths/categories/{categoryId}/get.yaml'
+  /summary:
+    get:
+      $ref: '../swagger/paths/summary/get.yaml'
 components:
   securitySchemes:
     bearerAuth:

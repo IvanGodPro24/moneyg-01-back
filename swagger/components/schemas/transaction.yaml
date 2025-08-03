@@ -22,7 +22,7 @@ properties:
   date:
     type: string
     description: Transaction date (YYYY-MM-DD or ISO 8601 format)
-    example: '2025-04-23'
+    example: '2025-02-15T00:00:00.000Z'
   sum:
     type: number
     description: Amount of the transaction

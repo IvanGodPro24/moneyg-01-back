@@ -11,9 +11,36 @@ responses:
     content:
       application/json:
         schema:
-          type: array
-          items:
-            $ref: '../../components/schemas/transaction.yaml'
+          type: object
+          required:
+            - data
+            - page
+            - perPage
+            - totalItems
+            - totalPages
+            - hasNextPage
+            - hasPreviousPage
+          properties:
+            data:
+              $ref: '../../components/schemas/transaction.yaml'
+            page:
+              type: number
+              example: 2
+            perPage:
+              type: number
+              example: 10
+            totalItems:
+              type: number
+              example: 30
+            totalPages:
+              type: number
+              example: 4
+            hasNextPage:
+              type: boolean
+              example: true
+            hasPreviousPage:
+              type: boolean
+              example: false
   '401':
     $ref: '../../components/responses/401.yaml'
   '404':

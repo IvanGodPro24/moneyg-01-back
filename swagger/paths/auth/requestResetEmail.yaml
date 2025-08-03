@@ -1,0 +1,37 @@
+tags:
+  - Auth
+security: []
+summary: Request a reset email
+operationId: requestResetEmail
+description: Request an email list to reset password
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+        properties:
+          email:
+            type: string
+            format: email
+            maxLength: 64
+            example: 'john.doe@example.com'
+responses:
+  '201':
+    description: Successfully sent a reset email
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - message
+          properties:
+            message:
+              type: string
+              example: Reset password email was successfully sent!
+  '400':
+    $ref: ../../components/responses/400.yaml
+  '500':
+    $ref: ../../components/responses/500.yaml

@@ -31,7 +31,7 @@ requestBody:
             example: 'securePassword123'
 responses:
   '201':
-    description: Successfull register a user
+    description: Successfully register a user
     content:
       application/json:
         schema:

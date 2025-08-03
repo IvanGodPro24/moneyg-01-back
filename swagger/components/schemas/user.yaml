@@ -1,9 +1,4 @@
 type: object
-required:
-  - _id
-  - name
-  - email
-  - password
 properties:
   _id:
     description: "User's id"
@@ -16,12 +11,23 @@ properties:
   email:
     description: "User's email"
     type: string
+    format: email
+    maxLength: 64
     example: 'test@example.com'
   password:
     description: "User's password"
     type: string
     example: 'qwerty1234'
   balance:
-    description: "User's balance"
+    description: "User's current balance"
     type: number
+    format: float
     example: 0
+  avatarURL:
+    description: "User's avatar"
+    type: string
+    example: https://res.cloudinary.com/dhopmpvmg/image/upload/v1749401010/avatars/oozxynlcfdudmkgisovl.png
+  registrationDate:
+    type: string
+    description: Registration date
+    example: '2025-05-01T04:50:53.655Z'

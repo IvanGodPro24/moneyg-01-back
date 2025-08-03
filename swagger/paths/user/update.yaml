@@ -8,26 +8,39 @@ description: Update specific fields of the current user. Requires authorization 
 requestBody:
   required: true
   content:
-    application/json:
+    multipart/form-data:
       schema:
         type: object
         properties:
           name:
+            description: "User's name"
             type: string
-            description: User's name
-            example: John Doe
+            example: 'John Doe'
           email:
+            description: "User's email"
             type: string
             format: email
             maxLength: 64
-            description: Valid email address
-            example: test@example.com
+            example: 'test@example.com'
+          password:
+            description: "User's password"
+            type: string
+            example: 'qwerty1234'
           balance:
+            description: "User's current balance"
             type: number
-            description: User's balance
+            format: float
             example: 0
-        additionalProperties: false
-        minProperties: 1
+          avatarURL:
+            description: "User's avatar"
+            type: string
+            example: https://res.cloudinary.com/dhopmpvmg/image/upload/v1749401010/avatars/oozxynlcfdudmkgisovl.png
+          registrationDate:
+            type: string
+            description: Registration date
+            example: '2025-05-01T04:50:53.655Z'
+            additionalProperties: false
+            minProperties: 1
 responses:
   '200':
     description: Successfully updated user information
