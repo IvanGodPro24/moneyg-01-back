@@ -39,7 +39,7 @@ Ensure you have Node.js (v16 or higher) and MongoDB installed.
    ```
 
 4. Create a `.env` file in the root directory based on `.env.example` and configure the necessary environment variables.
-   j
+
 5. Start the development server:
 
    ```bash
